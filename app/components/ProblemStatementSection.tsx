@@ -45,7 +45,7 @@ const ProblemStatementSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, ease: 'easeOut' }}
-          className="text-center py-16 md:py-24"
+          className="text-center py-16 md:py-20"
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-4 leading-tight magic-text-glow">
             なぜ、あなたの副業は<br className="md:hidden" />「<span className="text-[var(--accent)]">あと一歩</span>」で止まってしまうのか？
@@ -56,30 +56,30 @@ const ProblemStatementSection = () => {
           </p>
         </motion.div>
 
-        <div className="space-y-24 md:space-y-32">
+        <div className="space-y-16 md:space-y-24">
           {painPoints.map((point, index) => (
             <motion.div
               key={index}
               className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center"
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: true, amount: 0.3 }}
+              viewport={{ once: true, amount: 0.2 }}
               transition={{ staggerChildren: 0.2 }}
             >
               <motion.div
                 className={`w-full ${index % 2 === 0 ? 'md:order-1' : 'md:order-2'}`}
                 variants={{
-                  hidden: { opacity: 0, x: index % 2 === 0 ? -50 : 50 },
-                  visible: { opacity: 1, x: 0, transition: { duration: 0.7, ease: 'easeOut' } }
+                  hidden: { opacity: 0, y: 30 },
+                  visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: 'easeOut' } }
                 }}
               >
                 {point.type === 'image' && (
-                  <div className={`relative ${point.imageSrc === '/images/lp-6.png' || point.imageSrc === '/images/lp-7.png' || point.imageSrc === '/images/lp-8.png' ? 'aspect-video' : 'aspect-[3/4]'} rounded-lg overflow-hidden shadow-lg border border-[var(--border)]`}>
+                  <div className={`relative ${point.imageSrc === '/images/lp-6.png' || point.imageSrc === '/images/lp-7.png' || point.imageSrc === '/images/lp-8.png' ? 'aspect-video' : 'aspect-[3/4]'} rounded-lg overflow-hidden shadow-lg border border-[var(--border)] bg-black/20`}>
                     <Image
                       src={point.imageSrc!}
                       alt={point.altText!}
                       layout="fill"
-                      objectFit="cover"
+                      objectFit="contain"
                       className="transition-transform duration-500 hover:scale-105"
                     />
                   </div>
@@ -89,11 +89,11 @@ const ProblemStatementSection = () => {
               <motion.div
                 className={` ${index % 2 === 0 ? 'md:order-2' : 'md:order-1'}`}
                 variants={{
-                  hidden: { opacity: 0, x: index % 2 === 0 ? 50 : -50 },
-                  visible: { opacity: 1, x: 0, transition: { duration: 0.7, ease: 'easeOut', delay: 0.1 } }
+                  hidden: { opacity: 0, y: 30 },
+                  visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: 'easeOut', delay: 0.1 } }
                 }}
               >
-                <p className="text-xl md:text-2xl font-medium text-gray-200 leading-relaxed">
+                <p className="text-lg md:text-xl lg:text-2xl font-medium text-gray-200 leading-relaxed text-center md:text-left">
                   {point.text}
                 </p>
               </motion.div>
@@ -106,7 +106,7 @@ const ProblemStatementSection = () => {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.5 }}
-          className="text-center py-16 md:py-24"
+          className="text-center py-16 md:py-20"
         >
           <p className="text-xl text-gray-300 mb-6 max-w-3xl mx-auto">
             これらの悩みの根源は、多くの場合<span className="font-semibold text-[var(--accent-light)]">「正しい戦略の欠如」</span>と<span className="font-semibold text-[var(--accent-light)]">「自己流の限界」</span>にあります。
