@@ -4,7 +4,7 @@ import { useState, useRef, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { FaScroll, FaDragon, FaGem, FaMountain } from 'react-icons/fa'
 import { MdAutoAwesome } from 'react-icons/md'
-import { GiCrystalBall, GiSpellBook, GiFireShrine, GiDungeonGate, GiHourglass } from 'react-icons/gi'
+import { GiCrystalBall, GiSpellBook, GiFireShrine } from 'react-icons/gi'
 
 const challenges = [
   {
