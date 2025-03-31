@@ -1,0 +1,150 @@
+project:
+  name: "副業RPG風ランディングページ"
+  description: "副業や収益の多角化を目指す人のために、LINE追加でCVを取るRPG風LPを作成する"
+  version: "1.0"
+  tech_stack:
+    frontend: ["React", "TypeScript", "TailwindCSS", "Framer Motion"]
+    deployment: "Vercel"
+    assets: ["OpenGameArt", "Kenney", "Google Fonts"]
+  target_user:
+    persona:
+      - name: "副業初心者"
+        age_range: "20〜40代"
+        interests: ["副収入", "独立", "個人ビジネス"]
+        pain_points: ["何から始めれば良いか分からない", "時間がない", "成果が出ずに不安"]
+
+goal:
+  conversion: "LINE公式アカウントの追加"
+  key_kpi: "LINE登録数の増加"
+
+features:
+  design_theme: "RPG/ゲーム風（レトロ/ファンタジー）"
+  responsiveness: true
+  animation: true
+  language: "Japanese"
+  CTA:
+    text: "LINEで無料特典を受け取る"
+    location: ["ファーストビュー", "最終セクション"]
+    style: "ゲーム風UIボタン + エフェクト付き"
+
+structure:
+  sections:
+    - id: "hero"
+      name: "ファーストビュー"
+      description: "ゲームのスタート画面風。キャッチコピーとLINE追加ボタンを配置"
+      elements:
+        - キャッチコピー
+        - サポートキャラのセリフ
+        - LINE CTAボタン
+    - id: "items"
+      name: "無料特典紹介"
+      description: "3つの無料特典をアイテム風に紹介（マニュアル・テンプレ・サポート）"
+      components:
+        - item_card
+        - hover_description
+    - id: "challenges"
+      name: "ユーザーの悩み（敵キャラ風）"
+      description: "悩みを“敵キャラ”として表現し、サポーターが解決"
+      components:
+        - enemy_card
+        - support_action
+    - id: "achievements"
+      name: "成果・実績紹介"
+      description: "成功者の声と、ステージクリアのような成果段階の演出"
+      components:
+        - testimonial_slider
+        - achievement_level
+    - id: "cta_final"
+      name: "再CTAセクション"
+      description: "最終的な行動喚起。冒険の最後の選択風デザイン"
+      elements:
+        - メッセージ
+        - CTAボタン
+        - 演出（光、点滅、音）
+
+animation:
+  library: "Framer Motion"
+  triggers:
+    - scroll
+    - hover
+    - on_load
+  effects:
+    - fade_in
+    - slide_up
+    - glow_effect
+    - shake_on_hover
+
+deployment:
+  hosting: "Vercel"
+  domain: "カスタムドメイン予定"
+  environment: "Production"
+
+security:
+  tracking: "Google Analytics v4 or Plausible"
+  privacy_notice: true
+  form_data: "LINEへの遷移のみ。フォーム機能なし"
+
+notes:
+  - "LINEの友だち追加リンクまたはQRをCTAに使用"
+  - "BGMやSEなどの導入はオプションで検討可能"
+  - "ページロード速度を重視し、アニメーションは軽量化配慮"
+
+
+🎮 コンセプト：「あなたの副業冒険がここから始まる」
+🌟 テーマ：
+レトロRPG風 or ファンタジーRPG風
+
+スクロールごとに「ステージクリア」のような演出
+
+キャラアイコン + セリフ形式でのナビゲーション
+
+📐 ワイヤーフレーム構成（セクション順）
+① ファーストビュー（ゲームスタート画面風）
+要素	内容
+🎮 背景	RPGの村 or 魔法の書が開く演出
+🧙 キャッチコピー	「ゼロから始まる副業の冒険」
+📜 サブコピー	「3つの無料アイテムで今すぐ出発しよう」
+🟢 CTA	「LINEで冒険に出発する」ボタン（ゲーム風UI）
+🧑‍💻 キャラ	あなたの「副業サポーター」が表示されてセリフ付きでナビゲート
+② アイテム（無料特典）紹介セクション
+構成	内容
+背景	冒険者のアイテムリュック風
+各特典	ゲームアイテム風カードで表示（例：マニュアル → スクロール本、テンプレ → 魔法の巻物、サポート → パートナーキャラ）
+補足	ホバーでアイテムの説明が表示されるアニメーション
+③ プレイヤーの悩み（敵キャラ風）を表示するセクション
+表現	内容
+敵キャラ	「時間がない魔王」「何から始めたらいいか分からないオーク」など擬人化して表示
+解決法	サポーターキャラが一つずつ「スキル」で倒していくアニメ風演出（スクロールトリガー）
+フロー	「悩み→対処法→安心感」の順で導線構成
+④ 成果セクション（ステージクリア演出）
+表現	内容
+ステージ風	「月1万円の実績」＝Lv.1クリア、「月5万突破」＝Lv.2など、段階的成果を表示
+実績者の声	キャラ化したユーザー＋吹き出しでの感想表示（スクロール or カルーセル）
+安心表示	バリア（個人情報保護）や回復魔法（サポート体制）アイコンで表現
+⑤ 再CTAセクション（最終決断）
+表現	内容
+背景	ラスボス前のワープゾーン風
+メッセージ	「さあ、次はあなたの番です。」
+ボタン	「LINEで冒険をスタート」ボタン（光る・エフェクト付き）
+補足	タイマー付き or スクロールで自動点滅で誘導強化
+🎨 UIアニメーション案（React + Tailwind + Framer Motion想定）
+Framer Motionでセクションごとにフェードイン + スライドアップ
+
+TailwindCSSでレトロゲーム風カラー（青・金・黒ベース）
+
+コンポーネント分割：
+
+<Hero />
+
+<Items />
+
+<Challenges />
+
+<Achievements />
+
+<CTA />
+
+📌 補足
+画像やドット絵素材を使ってもいい（OpenGameArtやKenneyなどの無料素材利用）
+
+キャラやBGM要素を後に追加可能（ボリューム調整UIも追加できる）

@@ -1,0 +1,251 @@
+'use client'
+
+import { useState, useEffect, useRef } from 'react'
+import { motion } from 'framer-motion'
+import { GiSpellBook, GiSwordsPower } from 'react-icons/gi'
+import { FaMapMarkedAlt } from 'react-icons/fa'
+import Image from 'next/image'
+
+export default function FinalCta() {
+  const [isGlowing, setIsGlowing] = useState(false)
+  const canvasRef = useRef<HTMLCanvasElement>(null)
+  
+  // 光の輝きエフェクト
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIsGlowing(prev => !prev)
+    }, 3000)
+    
+    return () => clearInterval(interval)
+  }, [])
+  
+  // パーティクルエフェクト
+  useEffect(() => {
+    if (!canvasRef.current) return
+    
+    const canvas = canvasRef.current
+    const ctx = canvas.getContext('2d')
+    if (!ctx) return
+    
+    // キャンバスサイズの設定
+    const setCanvasSize = () => {
+      canvas.width = canvas.clientWidth
+      canvas.height = canvas.clientHeight
+    }
+    
+    setCanvasSize()
+    window.addEventListener('resize', setCanvasSize)
+    
+    // パーティクルの作成
+    const particles: {
+      x: number
+      y: number
+      radius: number
+      color: string
+      speedX: number
+      speedY: number
+      life: number
+      maxLife: number
+    }[] = []
+    
+    // 色の配列
+    const colors = [
+      'rgba(126, 87, 194, 0.6)',
+      'rgba(255, 213, 79, 0.6)',
+      'rgba(66, 165, 245, 0.6)',
+      'rgba(179, 157, 219, 0.6)'
+    ]
+    
+    // パーティクル生成関数
+    const createParticle = () => {
+      const x = Math.random() * canvas.width
+      const y = canvas.height + 10
+      const radius = Math.random() * 2 + 1
+      const color = colors[Math.floor(Math.random() * colors.length)]
+      const speedX = (Math.random() - 0.5) * 0.3
+      const speedY = -Math.random() * 0.8 - 0.2
+      const maxLife = 150 + Math.random() * 100
+      
+      particles.push({
+        x,
+        y,
+        radius,
+        color,
+        speedX,
+        speedY,
+        life: 0,
+        maxLife
+      })
+    }
+    
+    // パーティクルのアニメーション
+    const animate = () => {
+      if (!ctx) return
+      
+      // 背景をクリア
+      ctx.clearRect(0, 0, canvas.width, canvas.height)
+      
+      // 新しいパーティクルを作成
+      if (Math.random() < 0.3) {
+        createParticle()
+      }
+      
+      // パーティクルを描画・更新
+      for (let i = particles.length - 1; i >= 0; i--) {
+        const p = particles[i]
+        
+        // 透明度の計算
+        let alpha = 1
+        if (p.life < 20) {
+          alpha = p.life / 20
+        } else if (p.life > p.maxLife - 20) {
+          alpha = (p.maxLife - p.life) / 20
+        }
+        
+        // パーティクルの描画
+        ctx.globalAlpha = alpha
+        ctx.beginPath()
+        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2)
+        ctx.fillStyle = p.color
+        ctx.fill()
+        
+        // パーティクルの位置を更新
+        p.x += p.speedX
+        p.y += p.speedY
+        
+        // ライフタイムの更新
+        p.life++
+        
+        // ライフタイムが尽きたパーティクルを削除
+        if (p.life >= p.maxLife) {
+          particles.splice(i, 1)
+        }
+      }
+      
+      requestAnimationFrame(animate)
+    }
+    
+    animate()
+    
+    return () => {
+      window.removeEventListener('resize', setCanvasSize)
+    }
+  }, [])
+
+  return (
+    <section className="py-20 relative overflow-hidden bg-[var(--background)]">
+      {/* 背景キャンバス（パーティクルアニメーション用） */}
+      <canvas
+        ref={canvasRef}
+        className="absolute inset-0 w-full h-full pointer-events-none"
+      ></canvas>
+      
+      {/* 魔法陣の装飾 */}
+      <div className="absolute top-0 left-0 w-full h-full opacity-5">
+        <div 
+          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px]"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='500' height='500' viewBox='0 0 500 500' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='250' cy='250' r='200' stroke='%237e57c2' stroke-width='2' fill='none'/%3E%3Ccircle cx='250' cy='250' r='150' stroke='%23ffd54f' stroke-width='1' fill='none'/%3E%3Cpath d='M250,50 L250,450 M50,250 L450,250 M85,85 L415,415 M85,415 L415,85' stroke='%237e57c2' stroke-width='1'/%3E%3C/svg%3E")`,
+            backgroundSize: 'contain',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat'
+          }}
+        ></div>
+      </div>
+      
+      <div className="container mx-auto px-4 relative z-10">
+        <div className="max-w-6xl mx-auto">
+        <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
+            <h2 className="text-3xl md:text-5xl font-bold mb-8 leading-tight magic-glow text-center">
+              あなたの<span className="text-[var(--accent)]">冒険</span>は
+              <br/>今ここから<span className="text-[var(--magic)]">始まる</span>
+              </h2>
+            
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+              {/* 左側: 副業冒険ガイドブック */}
+              <motion.div
+                initial={{ opacity: 0, x: -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                className="flex justify-center"
+              >
+                <div className="relative max-w-md transform hover:scale-105 transition-transform duration-500">
+                  {/* ガイドブック画像 */}
+                  <Image
+                    src="/images/lp1.png"
+                    alt="ゼロイチ副業スタートマニュアル"
+                    width={500}
+                    height={700}
+                    className="rounded-lg shadow-[0_0_30px_rgba(126,87,194,0.4)]"
+                  />
+                  
+                  {/* 浮遊エフェクト */}
+                  <div className="absolute -top-4 -right-4 w-12 h-12 rounded-full bg-gradient-to-r from-[var(--primary)] to-[var(--magic)] opacity-40 animate-pulse"></div>
+                  <div className="absolute -bottom-3 -left-3 w-10 h-10 rounded-full bg-gradient-to-r from-[var(--accent)] to-[var(--primary)] opacity-40 animate-pulse" style={{animationDelay: '1s'}}></div>
+                </div>
+              </motion.div>
+              
+              {/* 右側: 冒険のメリットとCTA */}
+              <div>
+                <div className="grid grid-cols-1 gap-6 mb-10">
+                  <div className="p-4 bg-[var(--secondary)] bg-opacity-40 border border-[var(--border)] rounded-lg">
+                    <div className="flex justify-center mb-3">
+                      <GiSpellBook className="text-[var(--accent)] text-3xl" />
+                    </div>
+                    <h3 className="text-lg font-semibold mb-2 text-center">魔法の習得</h3>
+                    <p className="text-sm text-gray-300 text-center">あなたの才能を開花させ、新たなスキルという魔法を身につけましょう</p>
+                  </div>
+                  
+                  <div className="p-4 bg-[var(--secondary)] bg-opacity-40 border border-[var(--border)] rounded-lg">
+                    <div className="flex justify-center mb-3">
+                      <FaMapMarkedAlt className="text-[var(--magic)] text-3xl" />
+                    </div>
+                    <h3 className="text-lg font-semibold mb-2 text-center">冒険の地図</h3>
+                    <p className="text-sm text-gray-300 text-center">明確な道筋が示された地図を手に入れて、迷うことなく進みましょう</p>
+                  </div>
+                  
+                  <div className="p-4 bg-[var(--secondary)] bg-opacity-40 border border-[var(--border)] rounded-lg">
+                    <div className="flex justify-center mb-3">
+                      <GiSwordsPower className="text-[var(--accent)] text-3xl" />
+                    </div>
+                    <h3 className="text-lg font-semibold mb-2 text-center">力の獲得</h3>
+                    <p className="text-sm text-gray-300 text-center">経済的な力を手に入れ、あなたの生活に新たな選択肢をもたらします</p>
+            </div>
+          </div>
+          
+                <div className="text-center mt-10">
+            <a 
+              href="#" 
+                    className={`inline-block px-8 py-4 text-lg font-bold rounded-lg bg-[var(--primary)] text-white transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg relative overflow-hidden ${
+                      isGlowing ? 'magic-button-glow' : ''
+                    }`}
+                  >
+                    <span className="relative z-10">冒険に今すぐ参加する</span>
+                    
+                    {/* ボタン内の装飾効果 */}
+                    <span className="absolute inset-0 bg-gradient-to-r from-[var(--primary)] to-[var(--magic)] opacity-0 hover:opacity-100 transition-opacity duration-300"></span>
+                    
+                    {/* 光の効果 */}
+                    <span className="absolute top-0 left-0 w-full h-full">
+                      <span className="absolute top-0 left-0 w-full h-full bg-white opacity-0 mix-blend-overlay"></span>
+                    </span>
+                  </a>
+                  
+                  <p className="text-sm text-gray-400 mt-4">
+                    ※クリックするだけで、魔法のガイドブックが手に入ります
+                  </p>
+                </div>
+              </div>
+            </div>
+        </motion.div>
+      </div>
+      </div>
+    </section>
+  )
+} 
