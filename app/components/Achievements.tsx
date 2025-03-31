@@ -85,9 +85,9 @@ export default function Achievements() {
   }, [isInView])
 
   return (
-    <section className="py-24 relative overflow-hidden bg-[var(--secondary)] bg-opacity-20">
+    <section className="py-24 relative overflow-hidden bg-[var(--secondary)]" style={{ backgroundColor: 'rgba(var(--secondary-rgb), 0.2)' }}>
       {/* 背景の星空効果 */}
-      <div className="fantasy-stars opacity-20"></div>
+      <div className="fantasy-stars" style={{ opacity: 0.2 }}></div>
       
       {/* 魔法の装飾ライン */}
       <div className="absolute top-0 left-0 w-full h-[3px] bg-gradient-to-r from-[var(--primary)] via-[var(--magic)] to-[var(--primary)]"></div>
@@ -95,10 +95,11 @@ export default function Achievements() {
       
       {/* 魔法陣装飾 */}
       <div 
-        className="absolute right-0 top-0 h-full w-[200px] opacity-10" 
+        className="absolute right-0 top-0 h-full w-[200px]" 
         style={{ 
           backgroundImage: `url("data:image/svg+xml,%3Csvg width='200' height='200' viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='100' cy='100' r='80' stroke='%237e57c2' stroke-width='1' fill='none'/%3E%3Ccircle cx='100' cy='100' r='60' stroke='%23ffd54f' stroke-width='1' stroke-dasharray='5,3' fill='none'/%3E%3Cpath d='M50,100 L150,100 M100,50 L100,150' stroke='%237e57c2' stroke-width='1'/%3E%3C/svg%3E")`,
-          backgroundRepeat: 'repeat-y'
+          backgroundRepeat: 'repeat-y',
+          opacity: 0.1
         }}
       ></div>
       
@@ -127,7 +128,8 @@ export default function Achievements() {
           {achievements.map((achievement, index) => (
             <motion.div
               key={index}
-              className="p-6 rounded-lg bg-[var(--secondary)] bg-opacity-40 border border-[var(--border)] text-center hover:transform hover:scale-105 transition-all duration-300 magic-aura"
+              className="p-6 rounded-lg border border-[var(--border)] text-center hover:transform hover:scale-105 transition-all duration-300 magic-aura"
+              style={{ backgroundColor: 'rgba(var(--secondary-rgb), 0.4)' }}
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: index * 0.1 }}
@@ -158,8 +160,14 @@ export default function Achievements() {
         </div>
         
         {/* 魔法の装飾要素 */}
-        <div className="absolute bottom-10 left-10 w-20 h-20 rounded-full bg-gradient-to-r from-[var(--primary)] to-[var(--magic)] opacity-10 animate-pulse"></div>
-        <div className="absolute top-20 right-20 w-16 h-16 rounded-full bg-gradient-to-r from-[var(--accent)] to-[var(--magic)] opacity-10 animate-pulse" style={{animationDelay: '1s'}}></div>
+        <div 
+          className="absolute bottom-10 left-10 w-20 h-20 rounded-full bg-gradient-to-r from-[var(--primary)] to-[var(--magic)] animate-pulse"
+          style={{ opacity: 0.1 }}
+        ></div>
+        <div 
+          className="absolute top-20 right-20 w-16 h-16 rounded-full bg-gradient-to-r from-[var(--accent)] to-[var(--magic)] animate-pulse" 
+          style={{ opacity: 0.1, animationDelay: '1s' }}
+        ></div>
       </div>
     </section>
   )

@@ -131,7 +131,7 @@ export default function FinalCta() {
       ></canvas>
       
       {/* 魔法陣の装飾 */}
-      <div className="absolute top-0 left-0 w-full h-full opacity-5">
+      <div className="absolute top-0 left-0 w-full h-full" style={{ opacity: 0.05 }}>
         <div 
           className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px]"
           style={{
@@ -176,15 +176,21 @@ export default function FinalCta() {
                   />
                   
                   {/* 浮遊エフェクト */}
-                  <div className="absolute -top-4 -right-4 w-12 h-12 rounded-full bg-gradient-to-r from-[var(--primary)] to-[var(--magic)] opacity-40 animate-pulse"></div>
-                  <div className="absolute -bottom-3 -left-3 w-10 h-10 rounded-full bg-gradient-to-r from-[var(--accent)] to-[var(--primary)] opacity-40 animate-pulse" style={{animationDelay: '1s'}}></div>
+                  <div 
+                    className="absolute -top-4 -right-4 w-12 h-12 rounded-full bg-gradient-to-r from-[var(--primary)] to-[var(--magic)] animate-pulse"
+                    style={{ opacity: 0.4 }}
+                  ></div>
+                  <div 
+                    className="absolute -bottom-3 -left-3 w-10 h-10 rounded-full bg-gradient-to-r from-[var(--accent)] to-[var(--primary)] animate-pulse"
+                    style={{ opacity: 0.4, animationDelay: '1s' }}
+                  ></div>
                 </div>
               </motion.div>
               
               {/* 右側: 冒険のメリットとCTA */}
               <div>
                 <div className="grid grid-cols-1 gap-6 mb-10">
-                  <div className="p-4 bg-[var(--secondary)] bg-opacity-40 border border-[var(--border)] rounded-lg">
+                  <div className="p-4 border border-[var(--border)] rounded-lg" style={{ backgroundColor: 'rgba(var(--secondary-rgb), 0.4)' }}>
                     <div className="flex justify-center mb-3">
                       <GiSpellBook className="text-[var(--accent)] text-3xl" />
                     </div>
@@ -192,7 +198,7 @@ export default function FinalCta() {
                     <p className="text-sm text-gray-300 text-center">あなたの才能を開花させ、新たなスキルという魔法を身につけましょう</p>
                   </div>
                   
-                  <div className="p-4 bg-[var(--secondary)] bg-opacity-40 border border-[var(--border)] rounded-lg">
+                  <div className="p-4 border border-[var(--border)] rounded-lg" style={{ backgroundColor: 'rgba(var(--secondary-rgb), 0.4)' }}>
                     <div className="flex justify-center mb-3">
                       <FaMapMarkedAlt className="text-[var(--magic)] text-3xl" />
                     </div>
@@ -200,7 +206,7 @@ export default function FinalCta() {
                     <p className="text-sm text-gray-300 text-center">明確な道筋が示された地図を手に入れて、迷うことなく進みましょう</p>
                   </div>
                   
-                  <div className="p-4 bg-[var(--secondary)] bg-opacity-40 border border-[var(--border)] rounded-lg">
+                  <div className="p-4 border border-[var(--border)] rounded-lg" style={{ backgroundColor: 'rgba(var(--secondary-rgb), 0.4)' }}>
                     <div className="flex justify-center mb-3">
                       <GiSwordsPower className="text-[var(--accent)] text-3xl" />
                     </div>
@@ -222,6 +228,7 @@ export default function FinalCta() {
                       alt="LINEに登録して冒険の扉を開こう"
                       width={400}
                       height={100}
+                      style={{ height: 'auto' }}
                       className="transition-all duration-300 group-hover:brightness-110 group-hover:shadow-[0_0_20px_rgba(255,213,79,0.6)]"
                       priority
                     />

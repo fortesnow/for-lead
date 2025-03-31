@@ -10,12 +10,7 @@ function HeroContent() {
   const [isLoaded, setIsLoaded] = useState(false)
   const [loadingProgress, setLoadingProgress] = useState(0)
   const [showTitle, setShowTitle] = useState(false)
-  const [starCount] = useState(() => Array.from({ length: 20 }, () => ({
-    size: Math.random() * 3 + 1,
-    x: Math.random() * 100,
-    y: Math.random() * 100,
-    animationDelay: Math.random() * 5
-  })))
+  const [starCount, setStarCount] = useState<Array<{size: number, x: number, y: number, animationDelay: number}>>([])
   
   const titleRef = useRef<HTMLHeadingElement>(null)
   
@@ -32,8 +27,22 @@ function HeroContent() {
     speed: -20,
   })
   
+  // 星のランダム生成は useEffect 内で行う (クライアント側でのみ実行)
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+    
+    setStarCount(Array.from({ length: 20 }, () => ({
+      size: Math.random() * 3 + 1,
+      x: Math.random() * 100,
+      y: Math.random() * 100,
+      animationDelay: Math.random() * 5
+    })))
+  }, [])
+  
   // ローディングアニメーション
   useEffect(() => {
+    if (typeof window === 'undefined') return
+    
     const interval = setInterval(() => {
       setLoadingProgress(prev => {
         if (prev >= 100) {
@@ -51,7 +60,7 @@ function HeroContent() {
   
   // タイトルのきらめきエフェクト
   useEffect(() => {
-    if (!showTitle || !titleRef.current) return
+    if (!showTitle || !titleRef.current || typeof window === 'undefined') return
     
     const title = titleRef.current
     let glitchInterval: ReturnType<typeof setInterval>
@@ -73,9 +82,18 @@ function HeroContent() {
     <section className="relative min-h-screen flex flex-col items-center justify-center p5-bg-pattern overflow-hidden">
       {/* バックグラウンドのスタイリッシュな要素 */}
       <div ref={parallaxBg.ref} className="absolute top-0 left-0 w-full h-full">
-        <div className="absolute top-[15%] left-0 h-[15px] w-full bg-[var(--primary)] opacity-30 transform -skew-y-3"></div>
-        <div className="absolute top-[40%] right-0 h-[20px] w-[80%] bg-[var(--primary)] opacity-20 transform skew-y-3"></div>
-        <div className="absolute bottom-[20%] left-0 h-[10px] w-[60%] bg-[var(--accent)] opacity-10 transform -skew-y-1"></div>
+        <div 
+          className="absolute top-[15%] left-0 h-[15px] w-full bg-[var(--primary)] transform -skew-y-3"
+          style={{ opacity: 0.3 }}
+        ></div>
+        <div 
+          className="absolute top-[40%] right-0 h-[20px] w-[80%] bg-[var(--primary)] transform skew-y-3"
+          style={{ opacity: 0.2 }}
+        ></div>
+        <div 
+          className="absolute bottom-[20%] left-0 h-[10px] w-[60%] bg-[var(--accent)] transform -skew-y-1"
+          style={{ opacity: 0.1 }}
+        ></div>
         
         {/* ファンタジー星空の背景 */}
         <div className="fantasy-stars"></div>
@@ -87,9 +105,9 @@ function HeroContent() {
         <div className="absolute top-0 left-0 w-full h-full particles-overlay"></div>
       </div>
       
-      {/* 魔法の星エフェクト */}
+      {/* 魔法の星エフェクト - クライアントサイドでのみ表示 */}
       <div ref={parallaxStars.ref} className="absolute w-full h-full pointer-events-none">
-        {starCount.map((star, index) => (
+        {typeof window !== 'undefined' && starCount.map((star, index) => (
           <div 
             key={index}
             className="absolute bg-[var(--accent)] rounded-full animate-pulse"

@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { Suspense } from 'react'
 import dynamic from 'next/dynamic'
 import gsap from 'gsap'
@@ -32,7 +32,13 @@ const initGSAP = () => {
 const FreeSupportSection = () => {
   return (
     <section id="free-support" className="py-24 bg-gradient-to-b from-[var(--background)] to-[var(--secondary-dark)] text-white relative overflow-hidden">
-      <div className="absolute inset-0 opacity-10 pointer-events-none" style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'40\' height=\'40\' viewBox=\'0 0 40 40\'%3E%3Cpath fill=\'%237e57c2\' fill-opacity=\'0.1\' d=\'M0 40 L40 0 H20 L0 20 Z M40 40 V20 L20 40 Z\'/%3E%3C/svg%3E")' }}></div>
+      <div 
+        className="absolute inset-0 pointer-events-none" 
+        style={{ 
+          backgroundImage: 'url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'40\' height=\'40\' viewBox=\'0 0 40 40\'%3E%3Cpath fill=\'%237e57c2\' fill-opacity=\'0.1\' d=\'M0 40 L40 0 H20 L0 20 Z M40 40 V20 L20 40 Z\'/%3E%3C/svg%3E")',
+          opacity: 0.1
+        }}
+      ></div>
       <div className="container mx-auto px-4 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* 左側: 画像 */}
@@ -96,6 +102,9 @@ const FreeSupportSection = () => {
 };
 
 export default function Home() {
+  // グリッチエフェクトのトリガーフラグ
+  const [shouldGlitch, setShouldGlitch] = useState(false)
+  
   // コンポーネントマウント時に一度だけGSAPを初期化
   useEffect(() => {
     initGSAP()
@@ -111,11 +120,9 @@ export default function Home() {
       
       // グローバルエフェクト: スクロール時のグリッチ
       const handleScroll = () => {
+        // Math.randomはクライアントサイドでのみ実行
         if (Math.random() > 0.99) {
-          document.body.classList.add('glitch-active')
-          setTimeout(() => {
-            document.body.classList.remove('glitch-active')
-          }, 300)
+          setShouldGlitch(true)
         }
       }
       
@@ -126,6 +133,17 @@ export default function Home() {
       }
     }
   }, [])
+  
+  // shouldGlitchフラグが変更されたときに実際にエフェクトを適用
+  useEffect(() => {
+    if (shouldGlitch && typeof window !== 'undefined') {
+      document.body.classList.add('glitch-active')
+      setTimeout(() => {
+        document.body.classList.remove('glitch-active')
+        setShouldGlitch(false)
+      }, 300)
+    }
+  }, [shouldGlitch])
   
   return (
     <main className="min-h-screen">

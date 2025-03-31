@@ -37,6 +37,16 @@ const ProblemStatementSection = () => {
     },
   ]
 
+  const imageVariants = (index: number) => ({
+    hidden: { opacity: 0, x: index % 2 === 0 ? -60 : 60, scale: 0.9, rotate: index % 2 === 0 ? -3 : 3 },
+    visible: { opacity: 1, x: 0, scale: 1, rotate: 0, transition: { duration: 0.8, ease: "easeOut" } }
+  })
+
+  const textVariants = (index: number) => ({
+    hidden: { opacity: 0, x: index % 2 === 0 ? 60 : -60 },
+    visible: { opacity: 1, x: 0, transition: { duration: 0.8, ease: "easeOut", delay: 0.2 } }
+  })
+
   return (
     <section className="bg-gradient-to-b from-[var(--secondary-dark)] to-[var(--background)] text-white overflow-hidden">
       <div className="container mx-auto px-4">
@@ -56,44 +66,37 @@ const ProblemStatementSection = () => {
           </p>
         </motion.div>
 
-        <div className="space-y-16 md:space-y-24">
+        <div className="space-y-20 md:space-y-28">
           {painPoints.map((point, index) => (
             <motion.div
               key={index}
-              className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center"
+              className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-center"
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ staggerChildren: 0.2 }}
+              viewport={{ once: true, amount: 0.3 }}
             >
               <motion.div
-                className={`w-full ${index % 2 === 0 ? 'md:order-1' : 'md:order-2'}`}
-                variants={{
-                  hidden: { opacity: 0, y: 30 },
-                  visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: 'easeOut' } }
-                }}
+                className={`w-full ${index % 2 === 0 ? 'md:order-1' : 'md:order-2'} group`}
+                variants={imageVariants(index)}
               >
                 {point.type === 'image' && (
                   <div className={`relative ${point.imageSrc === '/images/lp-6.png' || point.imageSrc === '/images/lp-7.png' || point.imageSrc === '/images/lp-8.png' ? 'aspect-video' : 'aspect-[3/4]'} rounded-lg overflow-hidden shadow-lg border border-[var(--border)] bg-black/20`}>
                     <Image
                       src={point.imageSrc!}
                       alt={point.altText!}
-                      layout="fill"
-                      objectFit="contain"
-                      className="transition-transform duration-500 hover:scale-105"
+                      fill
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                      className="transition-transform duration-500 hover:scale-105 object-contain"
                     />
                   </div>
                 )}
               </motion.div>
 
               <motion.div
-                className={` ${index % 2 === 0 ? 'md:order-2' : 'md:order-1'}`}
-                variants={{
-                  hidden: { opacity: 0, y: 30 },
-                  visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: 'easeOut', delay: 0.1 } }
-                }}
+                className={` ${index % 2 === 0 ? 'md:order-2' : 'md:order-1'} md:px-4`}
+                variants={textVariants(index)}
               >
-                <p className="text-lg md:text-xl lg:text-2xl font-medium text-gray-200 leading-relaxed text-center md:text-left">
+                <p className="text-xl md:text-2xl lg:text-3xl font-semibold text-gray-100 leading-relaxed md:leading-loose text-center md:text-left group-hover:text-white transition-colors duration-300">
                   {point.text}
                 </p>
               </motion.div>

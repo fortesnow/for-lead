@@ -2,13 +2,21 @@
 
 import { motion } from 'framer-motion'
 import { useParallax, ParallaxProvider } from 'react-scroll-parallax'
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import gsap from 'gsap'
 
 // 内部コンポーネント - useParallaxを使用
 function WhatIsPersonaContent() {
   const sectionRef = useRef<HTMLElement>(null)
   const titleRef = useRef<HTMLHeadingElement>(null)
+  
+  // 星の位置を保存するための状態（SSRとCSRで一致させる）
+  const [stars] = useState<Array<{position: string, size: string, rotation: number}>>([
+    { position: "top-10 left-10", size: "text-2xl", rotation: 12 },
+    { position: "bottom-20 left-1/4", size: "text-3xl", rotation: -6 },
+    { position: "top-1/3 right-20", size: "text-4xl", rotation: 12 },
+    { position: "bottom-10 right-10", size: "text-xl", rotation: -12 }
+  ])
   
   const parallaxBg = useParallax<HTMLDivElement>({
     speed: -5,
@@ -84,27 +92,46 @@ function WhatIsPersonaContent() {
   return (
     <section ref={sectionRef} className="relative py-24 bg-[var(--background)] overflow-hidden">
       {/* 背景パターン */}
-      <div ref={parallaxBg.ref} className="absolute inset-0 p5-bg-pattern opacity-20"></div>
+      <div 
+        ref={parallaxBg.ref} 
+        className="absolute inset-0 p5-bg-pattern" 
+        style={{ opacity: 0.2 }}
+      ></div>
       
-      {/* 装飾用星アイコン */}
+      {/* 装飾用星アイコン - 固定位置で表示 */}
       <div ref={parallaxStars.ref} className="absolute w-full h-full pointer-events-none">
-        <div className="star absolute top-10 left-10 text-[var(--accent)] text-2xl transform rotate-12">★</div>
-        <div className="star absolute bottom-20 left-1/4 text-[var(--accent)] text-3xl transform -rotate-6">★</div>
-        <div className="star absolute top-1/3 right-20 text-[var(--accent)] text-4xl transform rotate-12">★</div>
-        <div className="star absolute bottom-10 right-10 text-[var(--accent)] text-xl transform -rotate-12">★</div>
+        {stars.map((star, index) => (
+          <div 
+            key={index}
+            className={`star absolute ${star.position} text-[var(--accent)] ${star.size}`}
+            style={{ transform: `rotate(${star.rotation}deg)` }}
+          >
+            ★
+          </div>
+        ))}
       </div>
 
       {/* 装飾ライン */}
-      <div className="absolute top-0 left-0 h-[10px] w-full bg-gradient-to-r from-[var(--accent)] via-[var(--primary)] to-[var(--magic)] opacity-30 transform -skew-y-3"></div>
-      <div className="absolute bottom-0 left-0 h-[10px] w-full bg-gradient-to-r from-[var(--magic)] via-[var(--primary)] to-[var(--accent)] opacity-30 transform skew-y-3"></div>
+      <div 
+        className="absolute top-0 left-0 h-[10px] w-full bg-gradient-to-r from-[var(--accent)] via-[var(--primary)] to-[var(--magic)] transform -skew-y-3" 
+        style={{ opacity: 0.3 }}
+      ></div>
+      <div 
+        className="absolute bottom-0 left-0 h-[10px] w-full bg-gradient-to-r from-[var(--magic)] via-[var(--primary)] to-[var(--accent)] transform skew-y-3" 
+        style={{ opacity: 0.3 }}
+      ></div>
       
       {/* 魔法の装飾要素 */}
-      <div className="fantasy-stars opacity-30"></div>
+      <div className="fantasy-stars" style={{ opacity: 0.3 }}></div>
       
       {/* 背景の魔法陣 */}
-      <div className="absolute right-0 top-10 w-[180px] h-full opacity-10 bg-repeat-y bg-right" style={{ 
-        backgroundImage: `url("data:image/svg+xml,%3Csvg width='120' height='120' viewBox='0 0 120 120' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='60' cy='60' r='50' stroke='%237e57c2' stroke-width='2' fill='none'/%3E%3Ccircle cx='60' cy='60' r='40' stroke='%237e57c2' stroke-width='1' stroke-dasharray='6,3' fill='none'/%3E%3Cpath d='M60,10 L60,110 M10,60 L110,60 M26,26 L94,94 M26,94 L94,26' stroke='%237e57c2' stroke-width='1' opacity='0.7'/%3E%3C/svg%3E")` 
-      }}></div>
+      <div 
+        className="absolute right-0 top-10 w-[180px] h-full bg-repeat-y bg-right" 
+        style={{ 
+          backgroundImage: `url("data:image/svg+xml,%3Csvg width='120' height='120' viewBox='0 0 120 120' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='60' cy='60' r='50' stroke='%237e57c2' stroke-width='2' fill='none'/%3E%3Ccircle cx='60' cy='60' r='40' stroke='%237e57c2' stroke-width='1' stroke-dasharray='6,3' fill='none'/%3E%3Cpath d='M60,10 L60,110 M10,60 L110,60 M26,26 L94,94 M26,94 L94,26' stroke='%237e57c2' stroke-width='1' opacity='0.7'/%3E%3C/svg%3E")`,
+          opacity: 0.1
+        }}
+      ></div>
 
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
@@ -163,10 +190,16 @@ function WhatIsPersonaContent() {
         
         {/* 魔法の装飾要素 */}
         <div className="absolute left-10 top-10 w-8 h-8 rounded-full magic-element" 
-          style={{ background: 'radial-gradient(circle, var(--accent) 0%, var(--primary) 100%)', opacity: 0.4 }}
+          style={{ 
+            background: 'radial-gradient(circle, var(--accent) 0%, var(--primary) 100%)', 
+            opacity: 0.4  // 数値として正しく渡される
+          }}
         ></div>
         <div className="absolute right-20 bottom-10 w-10 h-10 rounded-full magic-element" 
-          style={{ background: 'radial-gradient(circle, var(--primary) 0%, var(--magic) 100%)', opacity: 0.3 }}
+          style={{ 
+            background: 'radial-gradient(circle, var(--primary) 0%, var(--magic) 100%)', 
+            opacity: 0.3  // 数値として正しく渡される
+          }}
         ></div>
       </div>
     </section>

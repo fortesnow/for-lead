@@ -54,10 +54,41 @@ export default function Challenges() {
   const [isHovering, setIsHovering] = useState(false)
   const [particlesEnabled, setParticlesEnabled] = useState(false)
   const canvasRef = useRef<HTMLCanvasElement>(null)
+  // パーティクル状態を保持
+  const [particles, setParticles] = useState<Array<{
+    x: number
+    y: number
+    size: number
+    speedX: number
+    speedY: number
+    color: string
+    alpha: number
+  }>>([])
+  
+  // パーティクル初期化（クライアントサイドでのみ実行）
+  useEffect(() => {
+    if (typeof window === 'undefined' || !canvasRef.current) return
+    
+    const canvas = canvasRef.current
+    const colors = ['#7e57c2', '#ffd54f', '#42a5f5', '#b39ddb']
+    
+    // ここでランダム値を生成
+    const newParticles = Array(50).fill(0).map(() => ({
+      x: Math.random() * canvas.clientWidth,
+      y: Math.random() * canvas.clientHeight,
+      size: Math.random() * 3 + 1,
+      speedX: (Math.random() - 0.5) * 0.5,
+      speedY: (Math.random() - 0.5) * 0.5,
+      color: colors[Math.floor(Math.random() * colors.length)],
+      alpha: Math.random() * 0.5 + 0.1
+    }))
+    
+    setParticles(newParticles)
+  }, [particlesEnabled])
   
   // パーティクルアニメーション
   useEffect(() => {
-    if (!canvasRef.current || !particlesEnabled) return
+    if (!canvasRef.current || !particlesEnabled || particles.length === 0) return
     
     const canvas = canvasRef.current
     const ctx = canvas.getContext('2d')
@@ -72,31 +103,6 @@ export default function Challenges() {
     resizeCanvas()
     window.addEventListener('resize', resizeCanvas)
     
-    // パーティクルの設定
-    const particles: {
-      x: number
-      y: number
-      size: number
-      speedX: number
-      speedY: number
-      color: string
-      alpha: number
-    }[] = []
-    
-    const colors = ['#7e57c2', '#ffd54f', '#42a5f5', '#b39ddb']
-    
-    for (let i = 0; i < 50; i++) {
-      particles.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        size: Math.random() * 3 + 1,
-        speedX: (Math.random() - 0.5) * 0.5,
-        speedY: (Math.random() - 0.5) * 0.5,
-        color: colors[Math.floor(Math.random() * colors.length)],
-        alpha: Math.random() * 0.5 + 0.1
-      })
-    }
-    
     // アニメーション関数
     const animate = () => {
       if (!ctx) return
@@ -110,14 +116,13 @@ export default function Challenges() {
         ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2)
         ctx.fill()
         
-        particle.x += particle.speedX
-        particle.y += particle.speedY
+        // 各パーティクルの位置を更新（状態は更新せず、描画のみで位置を変更）
+        const newX = particle.x + particle.speedX
+        const newY = particle.y + particle.speedY
         
         // 画面外に出たパーティクルを反対側から入れ直す
-        if (particle.x < 0) particle.x = canvas.width
-        if (particle.x > canvas.width) particle.x = 0
-        if (particle.y < 0) particle.y = canvas.height
-        if (particle.y > canvas.height) particle.y = 0
+        particle.x = newX < 0 ? canvas.width : newX > canvas.width ? 0 : newX
+        particle.y = newY < 0 ? canvas.height : newY > canvas.height ? 0 : newY
       })
       
       animationId = requestAnimationFrame(animate)
@@ -129,7 +134,7 @@ export default function Challenges() {
       window.removeEventListener('resize', resizeCanvas)
       cancelAnimationFrame(animationId)
     }
-  }, [particlesEnabled])
+  }, [particlesEnabled, particles])
   
   useEffect(() => {
     // コンポーネントがマウントされてから少し遅れてパーティクルを有効化
@@ -144,11 +149,12 @@ export default function Challenges() {
     <section className="py-24 relative overflow-hidden bg-[var(--background)]">
       {/* 背景魔法陣 */}
       <div 
-        className="absolute inset-0 opacity-10" 
+        className="absolute inset-0" 
         style={{ 
           backgroundSize: '300px 300px',
           backgroundPosition: 'center',
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='300' height='300' viewBox='0 0 300 300' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='150' cy='150' r='120' stroke='%237e57c2' stroke-width='1' fill='none'/%3E%3Cpolygon points='150,30 180,110 270,110 195,160 220,250 150,200 80,250 105,160 30,110 120,110' stroke='%23ffd54f' stroke-width='1' fill='none'/%3E%3C/svg%3E")`
+          backgroundImage: `url("data:image/svg+xml,%3Csvg width='300' height='300' viewBox='0 0 300 300' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='150' cy='150' r='120' stroke='%237e57c2' stroke-width='1' fill='none'/%3E%3Cpolygon points='150,30 180,110 270,110 195,160 220,250 150,200 80,250 105,160 30,110 120,110' stroke='%23ffd54f' stroke-width='1' fill='none'/%3E%3C/svg%3E")`,
+          opacity: 0.1
         }}
       ></div>
       
@@ -178,19 +184,27 @@ export default function Challenges() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
           {/* タブメニュー（モバイルでは上、PCでは左側） */}
           <div className="lg:col-span-4">
-            <div className="bg-[var(--secondary)] bg-opacity-50 border border-[var(--border)] p-4 rounded-lg magic-aura">
+            <div 
+              className="bg-[var(--secondary)] border border-[var(--border)] p-4 rounded-lg magic-aura"
+              style={{ backgroundColor: 'rgba(var(--secondary-rgb), 0.5)' }}
+            >
               {challenges.map((challenge) => (
                 <motion.div
                   key={challenge.id}
                   className={`p-3 mb-2 rounded-md cursor-pointer flex items-center transition-all duration-300 ${
                     activeTab === challenge.id
-                      ? 'bg-[var(--primary)] bg-opacity-30 border-l-4 border-[var(--accent)]'
-                      : 'hover:bg-[var(--secondary)] hover:bg-opacity-70'
+                      ? 'border-l-4 border-[var(--accent)] hover:bg-[var(--primary)]'
+                      : 'hover:bg-[var(--secondary)]'
                   }`}
+                  style={
+                    activeTab === challenge.id 
+                      ? { backgroundColor: 'rgba(var(--primary-rgb), 0.3)' } 
+                      : { backgroundColor: 'transparent' }
+                  }
                   onClick={() => setActiveTab(challenge.id)}
                   whileHover={{ x: 5 }}
                 >
-                  <div className="mr-3 opacity-90">{challenge.icon}</div>
+                  <div className="mr-3" style={{ opacity: 0.9 }}>{challenge.icon}</div>
                   <span className={activeTab === challenge.id ? 'text-[var(--accent)]' : 'text-white'}>
                     {challenge.title}
                   </span>
@@ -211,7 +225,8 @@ export default function Challenges() {
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -20 }}
                       transition={{ duration: 0.4 }}
-                      className="bg-[var(--secondary)] bg-opacity-50 border border-[var(--border)] p-6 rounded-lg relative"
+                      className="bg-[var(--secondary)] border border-[var(--border)] p-6 rounded-lg relative"
+                      style={{ backgroundColor: 'rgba(var(--secondary-rgb), 0.5)' }}
                       onMouseEnter={() => setIsHovering(true)}
                       onMouseLeave={() => setIsHovering(false)}
                     >
@@ -265,7 +280,10 @@ export default function Challenges() {
         </div>
 
         {/* 装飾的な魔法の輝き */}
-        <div className="absolute -bottom-10 left-1/2 transform -translate-x-1/2 w-full h-20 bg-gradient-to-t from-[var(--magic)] opacity-5"></div>
+        <div 
+          className="absolute -bottom-10 left-1/2 transform -translate-x-1/2 w-full h-20 bg-gradient-to-t from-[var(--magic)]" 
+          style={{ opacity: 0.05 }}
+        ></div>
       </div>
     </section>
   )
