@@ -264,50 +264,6 @@ export default function Challenges() {
           </div>
         </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="text-center mt-12"
-        >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            こんな<span className="text-[var(--accent)]">お悩み</span>、
-            <br className="md:hidden" />
-            ありませんか？
-          </h2>
-          <p className="text-gray-400">あなたの冒険を妨げる障壁たち...</p>
-        </motion.div>
-
-        <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto mt-8">
-          {challenges.map((challenge, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, x: index % 2 === 0 ? -30 : 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: index * 0.2 }}
-              className="group"
-            >
-              <div className="p-6 bg-[var(--secondary)] bg-opacity-40 border border-[var(--border)] rounded-lg hover:shadow-[0_0_30px_rgba(126,87,194,0.2)] transition-all duration-300">
-                <div className="flex items-center space-x-4">
-                  <div className="flex-shrink-0">
-                    {challenge.icon}
-                  </div>
-                  <div className="flex-grow">
-                    <h3 className="text-lg font-semibold mb-2 group-hover:text-[var(--accent)] transition-colors duration-300">
-                      {challenge.title}
-                    </h3>
-                    <p className="text-sm text-gray-400">
-                      {challenge.description}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-
         {/* 装飾的な魔法の輝き */}
         <div className="absolute -bottom-10 left-1/2 transform -translate-x-1/2 w-full h-20 bg-gradient-to-t from-[var(--magic)] opacity-5"></div>
       </div>
