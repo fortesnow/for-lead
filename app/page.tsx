@@ -14,6 +14,7 @@ import Items from './components/Items'
 import Challenges from './components/Challenges'
 import Achievements from './components/Achievements'
 import FinalCta from './components/FinalCta'
+import ProblemStatementSection from './components/ProblemStatementSection'
 
 // 動的インポート
 const WhatIsPersona = dynamic(() => import('./components/WhatIsPersona'), { ssr: false })
@@ -30,7 +31,7 @@ const initGSAP = () => {
 // 個別無料サポートセクションコンポーネント
 const FreeSupportSection = () => {
   return (
-    <section className="py-24 bg-gradient-to-b from-[var(--background)] to-[var(--secondary-dark)] text-white relative overflow-hidden">
+    <section id="free-support" className="py-24 bg-gradient-to-b from-[var(--background)] to-[var(--secondary-dark)] text-white relative overflow-hidden">
       <div className="absolute inset-0 opacity-10 pointer-events-none" style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'40\' height=\'40\' viewBox=\'0 0 40 40\'%3E%3Cpath fill=\'%237e57c2\' fill-opacity=\'0.1\' d=\'M0 40 L40 0 H20 L0 20 Z M40 40 V20 L20 40 Z\'/%3E%3C/svg%3E")' }}></div>
       <div className="container mx-auto px-4 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -130,6 +131,7 @@ export default function Home() {
     <main className="min-h-screen">
       <div className="glitch-overlay"></div>
       <Hero />
+      <ProblemStatementSection />
       <FreeSupportSection />
       <Suspense fallback={<div className="h-96 bg-black"></div>}>
         <WhatIsPersona />

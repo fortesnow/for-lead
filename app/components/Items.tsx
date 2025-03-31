@@ -7,23 +7,23 @@ import Image from 'next/image'
 
 const items = [
   {
-    title: '魔法の才能発掘',
-    description: '自身の隠された才能を発見し、それを魔法のような技術へと進化させましょう。あなたの中に眠る力を見出すサポートをします。',
+    title: '迷わず進める「冒険の地図」',
+    description: '現状分析に基づき、あなただけの最適なロードマップを作成。回り道をせず、最短で目標達成へ導きます。',
     icon: '/images/item1.svg',
   },
   {
-    title: '冒険への第一歩',
-    description: '新たな冒険を始めるための基礎知識とスキルを習得できます。未知の領域へ足を踏み入れる勇気を持ちましょう。',
+    title: '挫折しない「継続の仕組み」',
+    description: 'モチベーションを維持し、着実にスキルアップできる環境を提供。一人では難しい継続をサポートします。',
     icon: '/images/item2.svg',
   },
   {
-    title: '魔力向上プログラム',
-    description: '才能を磨き、あなたの魔力（スキル）を高めるための特別なトレーニングを提供します。実践的な経験を積むことができます。',
+    title: '隠れた才能を輝かせる「錬金術」',
+    description: '自分では気づけない強みや可能性を発掘。それを収益化に繋げる具体的な方法を伝授します。',
     icon: '/images/item3.svg',
   },
   {
-    title: '一流の冒険者育成',
-    description: '専門的な冒険者としての道を進むためのノウハウを学び、真の実力を身につけましょう。成功への道標となります。',
+    title: '自信が持てる「真の実力」',
+    description: 'プロとして通用するスキルと実績を構築。堂々と自分の価値を提供できるようになります。',
     icon: '/images/item4.svg',
   },
 ]
@@ -108,24 +108,26 @@ export default function Items() {
       <div className="absolute top-0 left-0 w-full h-[3px] bg-gradient-to-r from-transparent via-[var(--magic)] to-transparent"></div>
       <div className="absolute bottom-0 left-0 w-full h-[3px] bg-gradient-to-r from-transparent via-[var(--accent)] to-transparent"></div>
       
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-12">
           <motion.h2
             className="text-4xl font-bold relative inline-block p5-title magic-glow"
             initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            冒険の<span className="text-[var(--accent)]">魔法</span>道具
+            あなたの副業が<span className="text-[var(--accent)]">加速</span>する！３つの魔法
           </motion.h2>
           <motion.p
             className="mt-4 text-lg max-w-2xl mx-auto text-gray-300"
             initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            副業冒険に旅立つ際に必要な魔法のアイテムをご用意しています。
-            これらのアイテムを使いこなすことで、あなたの冒険は大きく変わるでしょう。
+            単なるノウハウではありません。私たちが提供するのは、あなたの可能性を最大限に引き出し、
+            望む未来を実現するための具体的な「力」です。
           </motion.p>
         </div>
 
@@ -147,13 +149,13 @@ export default function Items() {
           {items.map((item, index) => (
             <motion.div
               key={index}
-              className="border border-[var(--border)] bg-[var(--secondary)] rounded-lg p-6 transform hover:-translate-y-1 hover:shadow-[0_0_15px_rgba(126,87,194,0.3)] transition-all duration-300 fantasy-card"
+              className="border border-[var(--border)] bg-[var(--secondary)] rounded-lg p-6 transform hover:-translate-y-2 hover:shadow-[0_0_25px_rgba(126,87,194,0.4)] transition-all duration-300 fantasy-card flex flex-col"
               variants={{
-                hidden: { opacity: 0, y: 20 },
+                hidden: { opacity: 0, y: 30 },
                 visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
               }}
             >
-              <div className="rounded-full w-16 h-16 bg-[var(--dark-accent)] flex items-center justify-center mb-6 mx-auto magic-aura">
+              <div className="rounded-full w-16 h-16 bg-[var(--dark-accent)] flex items-center justify-center mb-6 mx-auto magic-aura flex-shrink-0">
                 <Image
                   src={item.icon}
                   alt={item.title}
@@ -166,7 +168,7 @@ export default function Items() {
                 {item.title}
                 <span className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-12 h-1 bg-gradient-to-r from-[var(--accent)] to-[var(--primary)] rounded-full"></span>
               </h3>
-              <p className="text-gray-300 text-center mb-4">{item.description}</p>
+              <p className="text-gray-300 text-center mb-4 flex-grow">{item.description}</p>
             </motion.div>
           ))}
         </motion.div>

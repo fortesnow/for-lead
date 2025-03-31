@@ -1,23 +1,13 @@
 'use client'
 
-import { useState, useEffect, useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
 import { GiSpellBook, GiSwordsPower } from 'react-icons/gi'
 import { FaMapMarkedAlt } from 'react-icons/fa'
 import Image from 'next/image'
 
 export default function FinalCta() {
-  const [isGlowing, setIsGlowing] = useState(false)
   const canvasRef = useRef<HTMLCanvasElement>(null)
-  
-  // 光の輝きエフェクト
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setIsGlowing(prev => !prev)
-    }, 3000)
-    
-    return () => clearInterval(interval)
-  }, [])
   
   // パーティクルエフェクト
   useEffect(() => {
@@ -216,29 +206,29 @@ export default function FinalCta() {
                     </div>
                     <h3 className="text-lg font-semibold mb-2 text-center">力の獲得</h3>
                     <p className="text-sm text-gray-300 text-center">経済的な力を手に入れ、あなたの生活に新たな選択肢をもたらします</p>
-            </div>
-          </div>
-          
+                  </div>
+                </div>
+                
                 <div className="text-center mt-10">
-            <a 
-              href="#" 
-                    className={`inline-block px-8 py-4 text-lg font-bold rounded-lg bg-[var(--primary)] text-white transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg relative overflow-hidden ${
-                      isGlowing ? 'magic-button-glow' : ''
-                    }`}
+                  <motion.a
+                    href="#"
+                    className="inline-block cursor-pointer group mt-[-10px] mb-[-10px]"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.98 }}
+                    transition={{ type: "spring", stiffness: 400, damping: 17 }}
                   >
-                    <span className="relative z-10">冒険に今すぐ参加する</span>
-                    
-                    {/* ボタン内の装飾効果 */}
-                    <span className="absolute inset-0 bg-gradient-to-r from-[var(--primary)] to-[var(--magic)] opacity-0 hover:opacity-100 transition-opacity duration-300"></span>
-                    
-                    {/* 光の効果 */}
-                    <span className="absolute top-0 left-0 w-full h-full">
-                      <span className="absolute top-0 left-0 w-full h-full bg-white opacity-0 mix-blend-overlay"></span>
-                    </span>
-                  </a>
-                  
+                    <Image
+                      src="/images/lp-cta.png"
+                      alt="LINEに登録して冒険の扉を開こう"
+                      width={400}
+                      height={100}
+                      className="transition-all duration-300 group-hover:brightness-110 group-hover:shadow-[0_0_20px_rgba(255,213,79,0.6)]"
+                      priority
+                    />
+                  </motion.a>
+
                   <p className="text-sm text-gray-400 mt-4">
-                    ※クリックするだけで、魔法のガイドブックが手に入ります
+                    ▲ 画像をタップして、冒険の第一歩を踏み出そう！ ▲
                   </p>
                 </div>
               </div>
