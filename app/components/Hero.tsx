@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion'
 import Image from 'next/image'
-import { Parallax, ParallaxProvider } from 'react-scroll-parallax'
+// import { Parallax, ParallaxProvider } from 'react-scroll-parallax' // Parallax を削除
 
 // アニメーション Variants
 const textVariants = {
@@ -19,29 +19,28 @@ const textVariants = {
 
 function HeroContent() {
   return (
+    // h-screen だとモバイルで縦長すぎる場合があるので min-h-screen に戻すことも検討
     <section className="relative h-screen flex items-center justify-center overflow-hidden text-white">
-      {/* 背景画像 */} 
-      <ParallaxProvider>
-        <Parallax speed={-10} className="absolute inset-0 z-0"> {/* パララックス速度を-10に維持 */}
-          <Image
-            src="/images/fv.png"
-            alt="副業で人生を切り拓くイメージ"
-            fill
-            priority
-            // className="object-cover scale-105"
-            // object-position を指定 (デフォルトは center だが明示的に)。モバイルでは特に重要。
-            // scale-105 を削除し、不要なクロッピングを減らす。
-            className="object-cover object-center" 
-          />
-          {/* グラデーションオーバーレイ (テキストの可読性のため) */}
-          {/* 少し調整: 下部を濃く、上部にも僅かに色を残す */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-black/10"></div>
-        </Parallax>
-      </ParallaxProvider>
+      {/* 背景画像 (Parallax なし) */}
+      <div className="absolute inset-0 z-0">
+        <Image
+          src="/images/fv.png"
+          alt="副業で人生を切り拓くイメージ"
+          fill
+          priority
+          // className="object-cover object-center"
+          // モバイルで全体を見せるために object-contain を試す (sm以上でcover)
+          className="object-contain object-center sm:object-cover" 
+        />
+        {/* グラデーションオーバーレイ */}
+        {/* containの場合、画像が表示されないエリアが出るため、背景色も設定 */}
+        <div className="absolute inset-0 bg-black sm:bg-transparent"></div> {/* モバイルでの背景黒塗り */} 
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-black/20"></div> {/* グラデーション調整 */} 
+      </div>
 
       {/* コンテンツ */}
       <motion.div
-        className="relative z-10 text-center max-w-4xl px-4" // max-w を少し広げる
+        className="relative z-10 text-center max-w-4xl px-4"
         initial="hidden"
         animate="visible"
       >
