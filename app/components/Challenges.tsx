@@ -172,12 +172,12 @@ export default function Challenges() {
           transition={{ duration: 0.8 }}
           className="text-center mb-12"
         >
-          <h2 className="text-4xl font-bold relative inline-block magic-glow">
-            冒険者たちの<span className="text-[var(--accent)]">挑戦</span>
+          <h2 className="font-serif text-4xl font-bold relative inline-block magic-glow text-white">
+            なぜ多くの人が<br className="md:hidden"/><span className="text-[var(--accent)]">副業でつまずく</span>のか？
           </h2>
-          <p className="text-lg max-w-2xl mx-auto mt-4 text-gray-300">
-            副業冒険の道には様々な試練が立ちはだかります。
-            それらの困難を乗り越えるための知恵をここで共有します。
+          <p className="font-sans text-lg max-w-2xl mx-auto mt-4 text-gray-300">
+            やる気だけでは乗り越えられない、<strong className="font-semibold">副業特有の壁</strong>が存在します。
+            よくある落とし穴と、その<strong className="font-semibold">賢い回避策</strong>を学びましょう。
           </p>
         </motion.div>
 
@@ -205,7 +205,7 @@ export default function Challenges() {
                   whileHover={{ x: 5 }}
                 >
                   <div className="mr-3" style={{ opacity: 0.9 }}>{challenge.icon}</div>
-                  <span className={activeTab === challenge.id ? 'text-[var(--accent)]' : 'text-white'}>
+                  <span className={`font-sans ${activeTab === challenge.id ? 'text-[var(--accent)] font-semibold' : 'text-white'}`}>
                     {challenge.title}
                   </span>
                 </motion.div>
@@ -238,7 +238,7 @@ export default function Challenges() {
                         <div className="mr-4 p-3 bg-[var(--dark-accent)] rounded-full">
                           {challenge.icon}
                         </div>
-                        <h3 className="text-2xl font-bold text-[var(--accent)]">{challenge.title}</h3>
+                        <h3 className="font-serif text-2xl font-bold text-[var(--accent)]">{challenge.title}</h3>
                       </div>
                       
                       <div className="mb-6">
@@ -246,7 +246,7 @@ export default function Challenges() {
                           <FaMountain className="inline mr-2 text-[var(--magic)]" /> 
                           困難の内容
                         </h4>
-                        <p className="text-gray-300 leading-relaxed pl-4 border-l-2 border-[var(--border)]">
+                        <p className="mb-4 text-gray-300 font-sans">
                           {challenge.description}
                         </p>
                       </div>
@@ -256,8 +256,8 @@ export default function Challenges() {
                           <MdAutoAwesome className="inline mr-2 text-[var(--accent)]" /> 
                           解決の魔法
                         </h4>
-                        <p className="text-gray-300 leading-relaxed pl-4 border-l-2 border-[var(--border)]">
-                          {challenge.solution}
+                        <p className="mb-4 text-gray-300 font-sans">
+                          <strong className="text-[var(--accent)]">解決のヒント:</strong> {challenge.solution} <span className="text-sm">(詳細はLINEで解説！)</span>
                         </p>
                       </div>
                       
@@ -279,6 +279,52 @@ export default function Challenges() {
           </div>
         </div>
 
+        {/* CTA */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="text-center mt-16 max-w-4xl mx-auto bg-gradient-to-br from-[rgba(var(--secondary-rgb),0.7)] to-[rgba(var(--primary-rgb),0.3)] p-8 rounded-lg border border-[var(--border)]"
+        >
+          <h3 className="font-serif text-2xl font-bold mb-4 text-white">
+            これらの「壁」を<strong className="text-[var(--accent)]">最短ルート</strong>で乗り越えたくありませんか？
+          </h3>
+          <p className="font-sans text-lg mb-6 text-gray-300">
+            <strong className="font-semibold">経験者の知恵</strong>を借りれば、無駄な時間と労力を大幅に削減できます。
+            LINE登録で、あなたが今直面している課題に<strong className="font-semibold">ピンポイントで効く解決策</strong>と<strong className="font-semibold">個別アドバイス</strong>を提供します。
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <motion.a
+              href="#"
+              onClick={(e) => {
+                e.preventDefault()
+                window.open('https://line.me/R/ti/p/@youraccount', '_blank')
+              }}
+              className="bg-[var(--accent)] text-white font-bold py-3 px-8 rounded-full shadow-lg flex items-center justify-center"
+              whileHover={{ scale: 1.05, boxShadow: "0 0 25px rgba(126, 87, 194, 0.7)" }}
+              whileTap={{ scale: 0.98 }}
+            >
+              <svg className="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+              </svg>
+              LINE登録して解決策を受け取る
+            </motion.a>
+            <motion.a
+              href="#free-support"
+              className="bg-transparent border-2 border-[var(--accent)] text-[var(--accent)] font-bold py-3 px-8 rounded-full"
+              whileHover={{ 
+                scale: 1.05, 
+                backgroundColor: "rgba(126, 87, 194, 0.1)",
+                boxShadow: "0 0 15px rgba(126, 87, 194, 0.3)" 
+              }}
+              whileTap={{ scale: 0.98 }}
+            >
+              無料サポートについて詳しく見る
+            </motion.a>
+          </div>
+        </motion.div>
+        
         {/* 装飾的な魔法の輝き */}
         <div 
           className="absolute -bottom-10 left-1/2 transform -translate-x-1/2 w-full h-20 bg-gradient-to-t from-[var(--magic)]" 

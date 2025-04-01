@@ -151,10 +151,9 @@ export default function FinalCta() {
           viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <h2 className="text-3xl md:text-5xl font-bold mb-8 leading-tight magic-glow text-center">
-              あなたの<span className="text-[var(--accent)]">冒険</span>は
-              <br/>今ここから<span className="text-[var(--magic)]">始まる</span>
-              </h2>
+            <h2 className="font-serif text-3xl md:text-5xl font-bold mb-8 leading-tight magic-glow text-center text-white">
+              さあ、<span className="text-[var(--accent)]">あなた</span>も<br/>「<span className="text-[var(--magic)]">稼げる副業</span>」への<br className="md:hidden"/>扉を開こう！
+            </h2>
             
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
               {/* 左側: 副業冒険ガイドブック */}
@@ -194,24 +193,24 @@ export default function FinalCta() {
                     <div className="flex justify-center mb-3">
                       <GiSpellBook className="text-[var(--accent)] text-3xl" />
                     </div>
-                    <h3 className="text-lg font-semibold mb-2 text-center">魔法の習得</h3>
-                    <p className="text-sm text-gray-300 text-center">あなたの才能を開花させ、新たなスキルという魔法を身につけましょう</p>
+                    <h3 className="font-sans text-lg font-semibold mb-2 text-center text-white">再現性の高いノウハウ</h3>
+                    <p className="font-sans text-sm text-gray-300 text-center">未経験からでも<strong className="font-semibold">着実に成果を出せる</strong>、具体的な手順とテンプレートを提供。</p>
                   </div>
                   
                   <div className="p-4 border border-[var(--border)] rounded-lg" style={{ backgroundColor: 'rgba(var(--secondary-rgb), 0.4)' }}>
                     <div className="flex justify-center mb-3">
                       <FaMapMarkedAlt className="text-[var(--magic)] text-3xl" />
                     </div>
-                    <h3 className="text-lg font-semibold mb-2 text-center">冒険の地図</h3>
-                    <p className="text-sm text-gray-300 text-center">明確な道筋が示された地図を手に入れて、迷うことなく進みましょう</p>
+                    <h3 className="font-sans text-lg font-semibold mb-2 text-center text-white">迷わないロードマップ</h3>
+                    <p className="font-sans text-sm text-gray-300 text-center">あなた専用の計画で、<strong className="font-semibold">最短距離で目標達成</strong>へ。もう回り道はさせません。</p>
                   </div>
                   
                   <div className="p-4 border border-[var(--border)] rounded-lg" style={{ backgroundColor: 'rgba(var(--secondary-rgb), 0.4)' }}>
                     <div className="flex justify-center mb-3">
                       <GiSwordsPower className="text-[var(--accent)] text-3xl" />
                     </div>
-                    <h3 className="text-lg font-semibold mb-2 text-center">力の獲得</h3>
-                    <p className="text-sm text-gray-300 text-center">経済的な力を手に入れ、あなたの生活に新たな選択肢をもたらします</p>
+                    <h3 className="font-sans text-lg font-semibold mb-2 text-center text-white">安心のサポート体制</h3>
+                    <p className="font-sans text-sm text-gray-300 text-center"><strong className="font-semibold">いつでも相談できる環境</strong>で、モチベーション高く継続できます。</p>
                   </div>
                 </div>
                 
@@ -234,8 +233,8 @@ export default function FinalCta() {
                     />
                   </motion.a>
 
-                  <p className="text-sm text-gray-400 mt-4">
-                    ▲ 画像をタップして、冒険の第一歩を踏み出そう！ ▲
+                  <p className="font-sans text-sm text-gray-400 mt-4">
+                    ▲ 画像をタップして、<strong>無料</strong>で<strong>副業成功の第一歩</strong>を踏み出そう！ ▲
                   </p>
                 </div>
               </div>

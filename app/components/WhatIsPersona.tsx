@@ -149,11 +149,9 @@ function WhatIsPersonaContent() {
               <div className="relative">
                 <h2 
                   ref={titleRef}
-                  className="text-4xl md:text-6xl font-bold mb-4 p5-shadow magic-aura inline-block transform -skew-x-2"
+                  className="font-serif text-4xl font-bold mb-6 text-white"
                 >
-                  <span className="text-white">副業</span>
-                  <span className="text-[var(--accent)]">冒険</span>
-                  <span className="text-white">とは？</span>
+                  あなたの<span className="text-[var(--accent)]">「理想のお客様」</span>を見つけ出す
                 </h2>
                 <div className="title-line w-full h-1 bg-gradient-to-r from-[var(--accent)] to-[var(--primary)] mt-4 transform -skew-x-6 origin-left rounded-full"></div>
               </div>
@@ -170,15 +168,9 @@ function WhatIsPersonaContent() {
             data-animation="fadeIn"
           >
             <div className="p5-card-content">
-              <p className="mb-4 leading-relaxed">
-                現実世界での仕事と並行して、あなたの才能や<br/>
-                魔法のようなスキルを活かしながら、未知の<br/>
-                可能性へと旅立つ新しい冒険のスタイル。<br/>
-                この冒険は、あなたの世界を大きく広げるでしょう。
-              </p>
-              <p className="mb-4 leading-relaxed">
-                『副業能力』に目覚めた冒険者たちが出会い、<br/>
-                幾多の困難に立ち向かい、成長していく物語の主人公に。
+              <p className="text-lg max-w-2xl mx-auto mb-12 text-gray-300 font-sans">
+                誰に届けたいのか？その<strong className="font-semibold">「たった一人」</strong>を深く知ることが、選ばれる副業への第一歩。
+                お客様の<strong className="font-semibold">心に響く</strong>サービスや商品を生み出す秘訣がここにあります。
               </p>
               <p className="leading-relaxed">
                 『副業冒険』とは、あなたの中に眠る『才能』が『現実の魔法』となって<br/>
@@ -201,6 +193,41 @@ function WhatIsPersonaContent() {
             opacity: 0.3  // 数値として正しく渡される
           }}
         ></div>
+
+        {/* CTA */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="text-center mt-16 border-t border-[var(--border)] pt-16"
+        >
+          <h3 className="font-serif text-2xl md:text-3xl font-bold mb-6 inline-block text-white">
+            <span className="text-[var(--accent)]">売れる副業</span>の設計図を手に入れませんか？
+          </h3>
+          <p className="font-sans text-lg max-w-2xl mx-auto mb-8 text-gray-300">
+            LINE登録で<strong className="font-semibold">「お客様に刺さる！コンセプト設計シート」</strong>を<strong className="font-semibold">無料プレゼント</strong>！
+            <strong className="font-semibold">個別相談</strong>で、あなたの副業の方向性を明確にします。
+          </p>
+          <motion.a
+            href="#"
+            onClick={(e) => {
+              e.preventDefault()
+              window.open('https://line.me/R/ti/p/@youraccount', '_blank')
+            }}
+            className="px-8 py-4 bg-gradient-to-r from-[var(--accent)] to-[var(--accent-dark)] text-white font-bold rounded-full inline-block shadow-lg"
+            whileHover={{ scale: 1.05, boxShadow: "0 0 25px rgba(126, 87, 194, 0.7)" }}
+            whileTap={{ scale: 0.98 }}
+          >
+            <span className="flex items-center font-sans">
+              <svg className="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+              </svg>
+              LINE登録して設計図を受け取る
+            </span>
+          </motion.a>
+          <p className="mt-4 text-sm text-gray-400">※ 登録は無料です。いつでも解除できます。</p>
+        </motion.div>
       </div>
     </section>
   )

@@ -15,6 +15,8 @@ import Challenges from './components/Challenges'
 import Achievements from './components/Achievements'
 import FinalCta from './components/FinalCta'
 import ProblemStatementSection from './components/ProblemStatementSection'
+import FloatingCta from './components/FloatingCta'
+import TemplateSection from './components/TemplateSection'
 
 // 動的インポート
 const WhatIsPersona = dynamic(() => import('./components/WhatIsPersona'), { ssr: false })
@@ -66,30 +68,31 @@ const FreeSupportSection = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 leading-tight magic-text-glow">
-              <span className="text-[var(--accent)]">独り</span>で悩むのは、<br />もう<span className="text-[var(--accent)]">終わり</span>にしませんか？
+            <h2 className="font-serif text-4xl md:text-5xl font-bold mb-6 leading-tight magic-text-glow text-white">
+              <span className="text-[var(--accent)]">一人</span>で悩む時間は<br />もう<span className="text-[var(--accent)]">終わりにしませんか</span>？
             </h2>
-            <p className="text-lg text-gray-300 mb-8 leading-relaxed">
-              副業への道は、予期せぬ課題や孤独との戦いです。「何から始めれば？」「この方向で合ってる？」「もっと効率的な方法は？」…そんなあなたの<span className="font-semibold text-[var(--accent-light)]">具体的な悩み</span>に、経験豊富な専門家が<span className="font-semibold text-[var(--accent-light)]">マンツーマン</span>で寄り添い、成功への最短ルートを照らします。
+            <p className="font-sans text-lg text-gray-300 mb-8 leading-relaxed">
+              副業の道は孤独です。「これで合ってる？」「もっと良い方法は？」…そんな<strong className="font-semibold text-[var(--accent-light)]">尽きない疑問や不安</strong>に、<strong className="font-semibold text-[var(--accent-light)]">経験豊富なプロ</strong>が<strong className="font-semibold text-[var(--accent-light)]">マンツーマン</strong>で向き合い、<strong className="font-semibold text-[var(--accent-light)]">具体的な解決策</strong>と<strong className="font-semibold text-[var(--accent-light)]">成功への道筋</strong>を示します。
             </p>
-            <ul className="space-y-3 mb-10 text-gray-300">
+            <ul className="font-sans space-y-3 mb-10 text-gray-300">
               <li className="flex items-center">
                 <svg className="w-5 h-5 text-[var(--accent)] mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"></path></svg>
-                あなたの現状に合わせた<span className="font-medium text-white mx-1">具体的なアクションプラン</span>を策定
+                あなただけの<strong className="font-semibold text-white mx-1">収益化プラン</strong>を一緒に設計
               </li>
               <li className="flex items-center">
                 <svg className="w-5 h-5 text-[var(--accent)] mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"></path></svg>
-                つまずきやすいポイントを<span className="font-medium text-white mx-1">事前に回避</span>する戦略を提供
+                <strong className="font-semibold text-white mx-1">よくある失敗パターン</strong>を回避するノウハウを提供
               </li>
               <li className="flex items-center">
                 <svg className="w-5 h-5 text-[var(--accent)] mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"></path></svg>
-                モチベーション維持の秘訣と<span className="font-medium text-white mx-1">継続的なサポート</span>をお約束
+                <strong className="font-semibold text-white mx-1">モチベーションを維持</strong>し、<strong className="font-semibold text-white mx-1">継続</strong>するための秘訣を伝授
               </li>
             </ul>
             <motion.button
               whileHover={{ scale: 1.05, boxShadow: "0 0 25px rgba(126, 87, 194, 0.7)" }}
               whileTap={{ scale: 0.95 }}
-              className="w-full lg:w-auto bg-gradient-to-r from-[var(--accent)] to-[var(--accent-dark)] text-white font-bold py-4 px-10 rounded-full transition duration-300 shadow-lg text-xl hover:from-[var(--accent-dark)] hover:to-[var(--accent)]"
+              className="font-sans w-full lg:w-auto bg-gradient-to-r from-[var(--accent)] to-[var(--accent-dark)] text-white font-bold py-4 px-10 rounded-full transition duration-300 shadow-lg text-xl hover:from-[var(--accent-dark)] hover:to-[var(--accent)]"
+              onClick={() => window.open('https://line.me/R/ti/p/@youraccount', '_blank')}
             >
               今すぐ個別無料サポートに申し込む
             </motion.button>
@@ -151,6 +154,7 @@ export default function Home() {
       <Hero />
       <ProblemStatementSection />
       <FreeSupportSection />
+      <TemplateSection />
       <Suspense fallback={<div className="h-96 bg-black"></div>}>
         <WhatIsPersona />
       </Suspense>
@@ -158,6 +162,7 @@ export default function Home() {
       <Challenges />
       <Achievements />
       <FinalCta />
+      <FloatingCta />
     </main>
   )
 }

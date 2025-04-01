@@ -7,21 +7,16 @@ import { useInView } from 'react-intersection-observer'
 
 const items = [
   {
-    title: '迷わず進める「冒険の地図」',
-    description: '現状分析に基づき、あなただけの最適なロードマップを作成。回り道をせず、最短で目標達成へ導きます。',
-    // icon プロパティは削除 (またはコメントアウト)
+    title: '高単価スキル習得プラン',
+    description: '未経験からでも市場価値の高いスキルを習得し、高単価な案件を獲得するためのロードマップ。'
   },
   {
-    title: '挫折しない「継続の仕組み」',
-    description: 'モチベーションを維持し、着実にスキルアップできる環境を提供。一人では難しい継続をサポートします。',
+    title: '自動収益化システム構築',
+    description: 'あなたが寝ている間にも収入を生み出す、ブログやSNSを活用した仕組み作りのノウハウ。'
   },
   {
-    title: '隠れた才能を輝かせる「錬金術」',
-    description: '自分では気づけない強みや可能性を発掘。それを収益化に繋げる具体的な方法を伝授します。',
-  },
-  {
-    title: '自信が持てる「真の実力」',
-    description: 'プロとして通用するスキルと実績を構築。堂々と自分の価値を提供できるようになります。',
+    title: '継続サポートコミュニティ',
+    description: '挫折しない！仲間と情報交換しながらモチベーションを維持し、継続的に成果を出す環境。'
   },
 ]
 
@@ -128,23 +123,23 @@ export default function Items() {
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-12">
           <motion.h2
-            className="text-4xl font-bold relative inline-block p5-title magic-glow"
+            className="font-serif text-4xl font-bold relative inline-block p5-title magic-glow text-white"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            あなたの副業が<span className="text-[var(--accent)]">加速</span>する！３つの魔法
+            あなたの副業を<span className="text-[var(--accent)]">加速</span>させる！<br className="md:hidden"/>３つの<span className="text-[var(--primary)]">収益化戦略</span>
           </motion.h2>
           <motion.p
-            className="mt-4 text-lg max-w-2xl mx-auto text-gray-300"
+            className="font-sans mt-4 text-lg max-w-2xl mx-auto text-gray-300"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            単なるノウハウではありません。私たちが提供するのは、あなたの可能性を最大限に引き出し、
-            望む未来を実現するための具体的な「力」です。
+            机上の空論ではありません。私たちが提供するのは、あなたの<strong className="font-semibold">収入をブースト</strong>し、
+            <strong className="font-semibold">理想の働き方</strong>を実現するための具体的な「<strong className="font-semibold">武器</strong>」です。
           </motion.p>
         </div>
 
@@ -177,13 +172,66 @@ export default function Items() {
                 {/* Imageコンポーネントを削除し、代わりに背景色をつける */}
                 {/* <span className="text-gray-400 text-2xl">?</span> */}
               </div>
-              <h3 className="text-xl font-semibold mb-3 text-center relative">
+              <h3 className="font-serif text-xl font-semibold mb-3 text-center relative text-white">
                 {item.title}
                 <span className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-12 h-1 bg-gradient-to-r from-[var(--accent)] to-[var(--primary)] rounded-full"></span>
               </h3>
-              <p className="text-gray-300 text-center mb-4 flex-grow">{item.description}</p>
+              <p className="font-sans text-gray-300 text-center mb-4 flex-grow">{item.description}</p>
             </motion.div>
           ))}
+        </motion.div>
+        
+        {/* CTA Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          className="mt-16 text-center"
+        >
+          <h3 className="font-serif text-2xl font-bold mb-6 text-white">
+            この<span className="text-[var(--accent)]">3つの戦略</span>、<br className="md:hidden"/><strong className="font-semibold">無料</strong>で<strong className="font-semibold">さらに詳しく</strong>知りたくありませんか？
+          </h3>
+          <p className="font-sans max-w-2xl mx-auto text-lg mb-8 text-gray-300">
+            副業成功の鍵は、<strong className="font-semibold">正しい戦略と継続できる環境</strong>です。
+            LINE登録で、これら3つの戦略の詳細解説と、<strong className="font-semibold">すぐに使えるテンプレート</strong>をプレゼント！
+          </p>
+          
+          <div className="inline-block relative">
+            <motion.div
+              className="absolute -inset-1 bg-gradient-to-r from-[var(--accent)] to-[var(--magic)] rounded-lg blur-md"
+              animate={{ 
+                opacity: [0.5, 0.8, 0.5],
+                scale: [1, 1.02, 1],
+              }}
+              transition={{ 
+                duration: 2, 
+                repeat: Infinity,
+                repeatType: "mirror"
+              }}
+            />
+            <motion.a
+              href="#"
+              onClick={(e) => {
+                e.preventDefault()
+                window.open('https://line.me/R/ti/p/@youraccount', '_blank')
+              }}
+              className="relative bg-[var(--secondary)] text-white font-bold py-4 px-10 rounded-lg inline-block border border-[var(--border)]"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              <span className="flex items-center font-sans">
+                <svg className="w-5 h-5 mr-2 text-[var(--accent)]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                </svg>
+                <span className="text-[var(--accent)] font-semibold">LINE登録して</span><span className="ml-2">詳細ガイドと特典を受け取る</span>
+              </span>
+            </motion.a>
+          </div>
+          
+          <p className="mt-4 text-sm text-gray-400">
+            ※ 登録は無料です。特別なノウハウを今すぐゲット！
+          </p>
         </motion.div>
       </div>
     </section>

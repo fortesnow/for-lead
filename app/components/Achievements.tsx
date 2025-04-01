@@ -8,31 +8,31 @@ import { GiTrophyCup, GiMagicSwirl, GiMountainClimbing, GiBinoculars } from 'rea
 const achievements = [
   {
     icon: <GiTrophyCup className="text-[var(--accent)] text-4xl" />,
-    title: '魔法のスキル習得',
+    title: '成功者輩出数',
     value: '1,200+',
     suffix: '人',
-    description: '魔法のスキルを身につけ、副業冒険で成功した冒険者たち'
+    description: '私たちのプログラムを通じて、副業で成果を出した方の数です。あなたも続こう！'
   },
   {
     icon: <GiMagicSwirl className="text-[var(--magic)] text-4xl" />,
-    title: '宝物の発見',
-    value: '5.3',
-    suffix: '億円+',
-    description: '冒険者たちが獲得した副業からの報酬総額'
+    title: 'サポート満足度',
+    value: '98.2',
+    suffix: '%',
+    description: '参加者アンケートでの満足度。丁寧なサポートであなたの成功を後押しします。'
   },
   {
     icon: <GiMountainClimbing className="text-[var(--accent)] text-4xl" />,
-    title: '冒険の達成率',
-    value: '92',
-    suffix: '%',
-    description: '目標を達成した冒険者の割合（業界平均の3倍）'
+    title: '目標達成スピード',
+    value: '3',
+    suffix: 'ヶ月以内',
+    description: '多くの方が３ヶ月以内に最初の収益目標（月5万円など）を達成しています。'
   },
   {
     icon: <GiBinoculars className="text-[var(--magic)] text-4xl" />,
-    title: '新領域の探索',
+    title: '対応ジャンル数',
     value: '20+',
     suffix: '分野',
-    description: '冒険者たちが踏み入れた様々なジャンルとカテゴリー'
+    description: 'ブログ、SNS運用、デザイン、プログラミングなど、多様な副業に対応可能です。'
   }
 ]
 
@@ -106,21 +106,21 @@ export default function Achievements() {
       <div ref={ref} className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-12">
           <motion.h2 
-            className="text-4xl font-bold inline-block magic-glow"
+            className="font-serif text-4xl font-bold inline-block magic-glow text-white"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6 }}
           >
-            冒険の<span className="text-[var(--accent)]">成果</span>
+            確かな<span className="text-[var(--accent)]">実績</span>と<span className="text-[var(--primary)]">信頼</span>のサポート
           </motion.h2>
           <motion.p
-            className="mt-4 text-lg max-w-2xl mx-auto text-gray-300"
+            className="font-sans mt-4 text-lg max-w-2xl mx-auto text-gray-300"
             initial={{ opacity: 0 }}
             animate={isInView ? { opacity: 1 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            多くの冒険者たちが成功の魔法を手に入れています。
-            あなたも仲間になり、この素晴らしい冒険の世界に足を踏み入れましょう。
+            <strong className="font-semibold">絵空事ではありません。</strong> 私たちのプログラムとサポートによって、
+            <strong className="font-semibold">着実に成果を出している方々</strong>がいます。次はあなたの番です。
           </motion.p>
         </div>
 
@@ -138,20 +138,20 @@ export default function Achievements() {
                 {achievement.icon}
               </div>
               
-              <h3 className="text-lg font-medium mb-2 text-[var(--accent)]">{achievement.title}</h3>
+              <h3 className="font-sans text-lg font-medium mb-2 text-[var(--accent)]">{achievement.title}</h3>
               
               <div className="flex items-center justify-center space-x-1 mb-2">
                 <span 
                   ref={(el) => { countRefs.current[index] = el }}
-                  className="text-3xl font-bold text-white"
+                  className="font-serif text-3xl font-bold text-white"
                   style={{ fontVariantNumeric: 'tabular-nums' }}
                 >
                   0
                 </span>
-                <span className="text-2xl font-bold text-white">{achievement.suffix}</span>
+                <span className="font-serif text-2xl font-bold text-white">{achievement.suffix}</span>
               </div>
               
-              <p className="text-sm text-gray-300">{achievement.description}</p>
+              <p className="font-sans text-sm text-gray-300">{achievement.description}</p>
               
               {/* 装飾ライン */}
               <div className="mt-4 w-16 h-1 bg-gradient-to-r from-[var(--primary)] to-[var(--accent)] mx-auto rounded-full"></div>

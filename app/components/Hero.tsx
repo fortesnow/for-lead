@@ -157,26 +157,26 @@ function HeroContent() {
           >
             <h1 
               ref={titleRef} 
-              className="text-4xl md:text-6xl font-bold mb-3 p5-shadow magic-aura"
+              className="font-serif text-4xl md:text-6xl font-bold mb-3 p5-shadow magic-aura text-white"
             >
               副業<span className="text-[var(--primary)]">RPG</span>
             </h1>
             <div className="w-24 h-1 bg-[var(--primary)] mb-6"></div>
             <motion.p 
-              className="text-lg md:text-xl"
+              className="font-sans text-lg md:text-xl text-gray-200"
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: showTitle ? 1 : 0, y: showTitle ? 0 : 10 }}
               transition={{ delay: 0.8, duration: 0.5 }}
             >
-              ゼロから始まる<span className="text-[var(--primary)]">副業の冒険</span>
+              ゼロから<strong className="font-semibold text-[var(--primary)]">月5万円</strong>を目指す、<strong className="font-semibold text-[var(--primary)]">実践型</strong>副業プログラム
             </motion.p>
             <motion.p 
-              className="text-base md:text-lg mt-2"
+              className="font-sans text-base md:text-lg mt-2 text-gray-300"
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: showTitle ? 1 : 0, y: showTitle ? 0 : 10 }}
               transition={{ delay: 1, duration: 0.5 }}
             >
-              3つの魔法アイテムで今すぐ冒険を始めよう
+              <strong className="font-semibold">3つの収益化戦略</strong>で、あなたの才能を今すぐ形にしよう
             </motion.p>
           </motion.div>
 
@@ -187,18 +187,18 @@ function HeroContent() {
             transition={{ delay: 1.2, duration: 0.8 }}
             className="mb-12 md:mb-16"
           >
-            <ul className="space-y-2">
-              <li className="flex items-center p5-list-item">
+            <ul className="space-y-2 font-sans">
+              <li className="flex items-center p5-list-item text-gray-200">
                 <span className="inline-block w-3 h-3 bg-[var(--accent)] mr-3 rounded-full"></span>
-                <span>副収入という魔法を習得</span>
+                <span><strong className="font-semibold">再現性の高い</strong>スキルで副収入を実現</span>
               </li>
-              <li className="flex items-center p5-list-item">
+              <li className="flex items-center p5-list-item text-gray-200">
                 <span className="inline-block w-3 h-3 bg-[var(--accent)] mr-3 rounded-full"></span>
-                <span>時間という宝物を有効活用</span>
+                <span><strong className="font-semibold">スキマ時間</strong>を有効活用して収入アップ</span>
               </li>
-              <li className="flex items-center p5-list-item">
+              <li className="flex items-center p5-list-item text-gray-200">
                 <span className="inline-block w-3 h-3 bg-[var(--accent)] mr-3 rounded-full"></span>
-                <span>あなたの才能で冒険へ</span>
+                <span>あなたの<strong className="font-semibold">得意なこと</strong>が収入源に変わる</span>
               </li>
             </ul>
           </motion.div>
@@ -208,20 +208,55 @@ function HeroContent() {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: showTitle ? 1 : 0, scale: showTitle ? 1 : 0.9 }}
             transition={{ delay: 1.5, duration: 0.5 }}
-            className="animate-on-scroll"
+            className="animate-on-scroll flex flex-col md:flex-row gap-4"
             data-animation="fadeIn"
           >
-            <a 
+            <motion.a 
               href="#" 
-              className="p5-button magic-aura"
+              className="p5-button magic-aura relative overflow-hidden group"
               onClick={(e) => {
                 e.preventDefault()
                 window.open('https://line.me/R/ti/p/@youraccount', '_blank')
               }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.98 }}
             >
-              <span className="p5-button-content">魔法の冒険に出発する</span>
-            </a>
+              <span className="absolute inset-0 bg-gradient-to-r from-[var(--accent)] to-[var(--magic)] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+              <span className="p5-button-content relative z-10 flex items-center font-sans">
+                <svg className="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                </svg>
+                LINEで魔法の冒険に出発する
+              </span>
+              <motion.span 
+                className="absolute -bottom-1 left-0 w-full h-1 bg-[var(--accent)]"
+                initial={{ width: 0 }}
+                whileHover={{ width: '100%' }}
+                transition={{ duration: 0.3 }}
+              />
+            </motion.a>
+            
+            <motion.a 
+              href="#free-support" 
+              className="p5-button-secondary relative overflow-hidden"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              <span className="p5-button-content relative z-10 font-sans">
+                <span>無料サポートを詳しく見る</span>
+                <span className="ml-2">↓</span>
+              </span>
+            </motion.a>
           </motion.div>
+
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: showTitle ? 0.8 : 0 }}
+            transition={{ delay: 1.8, duration: 0.5 }}
+            className="mt-4 text-gray-400 text-sm"
+          >
+            ※ 登録は30秒で完了します。特別なコンテンツが今すぐ手に入ります。
+          </motion.p>
         </div>
 
         {/* デコレーション要素 */}
