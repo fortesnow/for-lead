@@ -8,9 +8,36 @@ const inter = Inter({
   variable: '--font-inter'
 })
 
+const title = 'もう迷わない！1日5分で始める副業収益化テンプレート｜【LINE登録者限定】'
+const description = '副業で成果が出ない悩み、解決します。LINE登録者限定で、1日5分の実践で収益化を目指せる具体的なテンプレート集をプレゼント。あなたの副業を加速させる「武器」を手に入れよう！'
+const siteUrl = 'https://your-domain.com' // TODO: あなたのサイトのURLに変更してください
+const ogImageUrl = `${siteUrl}/overview.png` // OGP画像のパス（必要に応じて変更）
+
 export const metadata: Metadata = {
-  title: '副業RPG - あなたのスキルで冒険しよう',
-  description: '副業でスキルを磨き、経験を積み、報酬を得る。あなたの冒険が始まる。',
+  title: title,
+  description: description,
+  openGraph: {
+    title: title,
+    description: description,
+    url: siteUrl,
+    siteName: title, // サイト名にもタイトルを設定
+    images: [
+      {
+        url: ogImageUrl,
+        width: 1200, // OGP画像の幅 (推奨: 1200px)
+        height: 630, // OGP画像の高さ (推奨: 630px)
+        alt: title, // 代替テキスト
+      },
+    ],
+    locale: 'ja_JP',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image', // 大きな画像付きのサマリーカード
+    title: title,
+    description: description,
+    images: [ogImageUrl],
+  },
 }
 
 export default function RootLayout({
