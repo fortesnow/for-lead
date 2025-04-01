@@ -189,15 +189,17 @@ export default function Items() {
           transition={{ duration: 0.8, delay: 0.4 }}
           className="mt-16 text-center"
         >
-          <h3 className="font-serif text-2xl font-bold mb-6 text-white">
-            この<span className="text-[var(--accent)]">3つの戦略</span>、<br className="md:hidden"/><strong className="font-semibold">無料</strong>で<strong className="font-semibold">さらに詳しく</strong>知りたくありませんか？
+          <h3 className="font-serif text-xl sm:text-2xl font-bold mb-6 text-white">
+            この<span className="text-[var(--accent)]">3つの戦略</span>、<br className="sm:hidden"/>
+            <strong className="font-semibold">無料</strong>で<strong className="font-semibold">さらに詳しく</strong>知りたくありませんか？
           </h3>
-          <p className="font-sans max-w-2xl mx-auto text-lg mb-8 text-gray-300">
+          <p className="font-sans max-w-2xl mx-auto text-base sm:text-lg mb-8 text-gray-300">
             副業成功の鍵は、<strong className="font-semibold">正しい戦略と継続できる環境</strong>です。
-            LINE登録で、これら3つの戦略の詳細解説と、<strong className="font-semibold">すぐに使えるテンプレート</strong>をプレゼント！
+            LINE登録で、これら3つの戦略の詳細解説と、<br className="sm:hidden"/>
+            <strong className="font-semibold">すぐに使えるテンプレート</strong>をプレゼント！
           </p>
           
-          <div className="inline-block relative">
+          <div className="inline-block relative mt-4">
             <motion.div
               className="absolute -inset-1 bg-gradient-to-r from-[var(--accent)] to-[var(--magic)] rounded-lg blur-md"
               animate={{ 
@@ -216,15 +218,15 @@ export default function Items() {
                 e.preventDefault()
                 window.open('https://line.me/R/ti/p/@youraccount', '_blank')
               }}
-              className="relative bg-[var(--secondary)] text-white font-bold py-4 px-10 rounded-lg inline-block border border-[var(--border)]"
+              className="relative inline-block rounded-lg border border-[var(--border)] bg-[var(--secondary)] px-6 py-3 text-sm font-bold text-white sm:px-10 sm:py-4 sm:text-base"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.98 }}
             >
               <span className="flex items-center font-sans">
-                <svg className="w-5 h-5 mr-2 text-[var(--accent)]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg className="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-[var(--accent)]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
                 </svg>
-                <span className="text-[var(--accent)] font-semibold">LINE登録して</span><span className="ml-2">詳細ガイドと特典を受け取る</span>
+                <span className="text-[var(--accent)] font-semibold">LINE登録して</span><span className="ml-1 sm:ml-2">詳細ガイドと特典を受け取る</span>
               </span>
             </motion.a>
           </div>

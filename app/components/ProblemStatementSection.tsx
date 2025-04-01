@@ -3,7 +3,8 @@
 import { motion } from 'framer-motion'
 import Image from 'next/image';
 
-// 各単語をspanで囲むための関数
+// 各単語をspanで囲むための関数 -> 単語ごとのアニメーションは冗長なため、一旦コメントアウト
+/*
 const WordWrapper = ({ text }: { text: string }) => {
   return (
     <>
@@ -19,6 +20,7 @@ const WordWrapper = ({ text }: { text: string }) => {
     </>
   )
 };
+*/
 
 const ProblemStatementSection = () => {
   const painPoints = [
@@ -54,34 +56,45 @@ const ProblemStatementSection = () => {
     },
   ]
 
+  // 画像のアニメーション: 左右からのスライドイン + フェードイン
   const imageVariants = (index: number) => ({
-    hidden: { opacity: 0, x: index % 2 === 0 ? -60 : 60, scale: 0.9, rotate: index % 2 === 0 ? -3 : 3 },
-    visible: { opacity: 1, x: 0, scale: 1, rotate: 0, transition: { duration: 0.8, ease: "easeOut" } }
-  })
-
-  const textContainerVariants = {
-    hidden: { opacity: 0 },
+    hidden: { opacity: 0, x: index % 2 === 0 ? -50 : 50 },
     visible: {
       opacity: 1,
-      transition: {
-        delayChildren: 0.2,
-        staggerChildren: 0.08, // 単語間の遅延
-      },
+      x: 0,
+      transition: { duration: 0.8, ease: "easeInOut" } // 標準的なイージングに変更
+    }
+  });
+
+  // テキストエリアのアニメーション: 下からのスライドイン + フェードイン
+  const textVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.8, ease: "easeInOut", delay: 0.1 } // 標準的なイージングに変更
     },
+  };
+
+  // セクションタイトル用アニメーション
+  const sectionTitleVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
   };
 
   return (
     <section className="bg-gradient-to-b from-[var(--secondary-dark)] to-[var(--background)] text-white overflow-hidden relative">
-      {/* アニメーション付き背景パターン */}
-      <div className="absolute inset-0 animated-bg-pattern z-0"></div>
-      
+      {/* アニメーション付き背景パターン -> アニメーションクラスを削除し、静的なパターンに */}
+      {/* <div className="absolute inset-0 animated-bg-pattern z-0"></div> */}
+      <div className="absolute inset-0 bg-radial-pattern opacity-10 z-0"></div> {/* 静的な代替パターン (globals.cssで定義) */}
+
       {/* コンテンツコンテナ (z-indexで背景の上に) */}
       <div className="container mx-auto px-4 relative z-10">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, ease: 'easeOut' }}
+          variants={sectionTitleVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
           className="text-center py-12 md:py-20"
         >
           <h2 className="font-serif text-3xl md:text-4xl font-bold mb-4 leading-tight magic-text-glow text-white">
@@ -98,13 +111,14 @@ const ProblemStatementSection = () => {
             <motion.div
               key={index}
               className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12 lg:gap-16 items-center"
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.3 }}
+              // 各ペアの親要素にアニメーションを設定する代わりに、子要素に直接設定
             >
               <motion.div
                 className={`w-full ${index % 2 === 0 ? 'md:order-1' : 'md:order-2'} group`}
-                variants={imageVariants(index)}
+                variants={imageVariants(index)} // 画像用アニメーション適用
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.4 }}
               >
                 {point.type === 'image' && (
                   <div className={`relative w-full h-[250px] sm:h-[300px] md:h-[320px] lg:h-[380px] rounded-lg overflow-hidden shadow-lg border border-[var(--border)] bg-black/20`}>
@@ -120,16 +134,17 @@ const ProblemStatementSection = () => {
                 )}
               </motion.div>
 
-              {/* テキストエリア (Stagger Animation) */}
+              {/* テキストエリア */}
               <motion.div
                 className={`${index % 2 === 0 ? 'md:order-2' : 'md:order-1'} px-2 md:px-4`}
-                variants={textContainerVariants}
+                variants={textVariants} // テキスト用アニメーション適用
                 initial="hidden"
                 whileInView="visible"
-                viewport={{ once: true, amount: 0.3 }} // コンテナが見えたら発動
+                viewport={{ once: true, amount: 0.4 }} // 画像とほぼ同時に発動
               >
                 <p className="font-sans text-base sm:text-lg md:text-xl lg:text-2xl font-semibold text-gray-100 leading-relaxed md:leading-loose text-center md:text-left group-hover:text-white transition-colors duration-300">
-                  <WordWrapper text={point.text} />
+                  {/* <WordWrapper text={point.text} /> */}
+                  {point.text} {/* テキストを直接表示 */} 
                 </p>
               </motion.div>
             </motion.div>
@@ -137,10 +152,10 @@ const ProblemStatementSection = () => {
         </div>
 
         <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.5 }}
+          initial={{ opacity: 0, y: 30 }} // フェードイン + スライドイン
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }} // 少し遅れて開始
           className="text-center py-12 md:py-20"
         >
           <p className="font-sans text-lg md:text-xl text-gray-300 mb-6 max-w-3xl mx-auto">
@@ -149,7 +164,7 @@ const ProblemStatementSection = () => {
         </motion.div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default ProblemStatementSection 
+export default ProblemStatementSection; 
