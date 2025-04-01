@@ -12,7 +12,6 @@ import { motion } from 'framer-motion'
 import Hero from './components/Hero'
 import Items from './components/Items'
 import Challenges from './components/Challenges'
-import Achievements from './components/Achievements'
 import FinalCta from './components/FinalCta'
 import ProblemStatementSection from './components/ProblemStatementSection'
 import FloatingCta from './components/FloatingCta'
@@ -160,7 +159,6 @@ export default function Home() {
       </Suspense>
       <Items />
       <Challenges />
-      <Achievements />
       <FinalCta />
       <FloatingCta />
     </main>
