@@ -1,11 +1,17 @@
 import './globals.css'
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import { Inter, Noto_Serif_JP } from 'next/font/google'
 import ClientComponentsWrapper from './components/ClientComponentsWrapper'
 
 const inter = Inter({ 
   subsets: ['latin'], 
   variable: '--font-inter'
+})
+
+const notoSerifJP = Noto_Serif_JP({
+  subsets: ['latin'],
+  weight: ['700', '900'],
+  variable: '--font-noto-serif-jp'
 })
 
 const title = 'もう迷わない！1日5分で始める副業収益化テンプレート｜【LINE登録者限定】'
@@ -46,12 +52,12 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="ja" className="scroll-smooth">
+    <html lang="ja" className={`${inter.variable} ${notoSerifJP.variable} scroll-smooth`}>
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       </head>
-      <body className={`${inter.variable}`}>
+      <body className="font-sans">
         {children}
         <ClientComponentsWrapper />
       </body>

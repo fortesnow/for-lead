@@ -2,142 +2,84 @@
 
 import { motion } from 'framer-motion'
 import Image from 'next/image'
-import { Parallax, ParallaxProvider } from 'react-scroll-parallax' // パララックスを背景に使用
+import { Parallax, ParallaxProvider } from 'react-scroll-parallax'
 
 // アニメーション Variants
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.25, // 子要素の遅延を少し増やす
-      ease: "easeInOut", // 全体的にスムーズに
-    },
-  },
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 30 }, // 開始Y位置を少し下に
+const textVariants = {
+  hidden: { opacity: 0, y: 40 },
   visible: {
     opacity: 1,
     y: 0,
     transition: {
-      duration: 0.8, // アニメーション時間を少し長く
-      ease: "easeInOut", // 標準的なイージングに変更
+      duration: 1.2, // 少し長めに
+      ease: "easeInOut", // 標準的なイージング文字列に変更
     },
   },
-};
-
-const buttonVariants = {
-  hidden: { opacity: 0, scale: 0.8, y: 20 }, // Y軸も少し追加
-  visible: {
-    opacity: 1,
-    scale: 1,
-    y: 0,
-    transition: {
-      type: "spring",
-      stiffness: 180, // 少し柔らかく
-      damping: 18,
-      delay: 0.75, // 他の要素より少し遅れて表示 (itemVariants * 3 + stagger)
-    },
-  },
-  hover: { // ホバー時のスケールアップのみに
-    scale: 1.05,
-    transition: { 
-      type: "spring", 
-      stiffness: 300, 
-      damping: 15 
-    }
-  },
-  tap: { // タップ時のスケールダウン
-    scale: 0.98
-  }
 };
 
 function HeroContent() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden text-white">
-      {/* 背景画像とオーバーレイ */}
+    <section className="relative h-screen flex items-center justify-center overflow-hidden text-white">
+      {/* 背景画像 */} 
       <ParallaxProvider>
-        <Parallax speed={-10} className="absolute inset-0 z-0"> {/* 速度を少し緩やかに */}
+        <Parallax speed={-10} className="absolute inset-0 z-0"> {/* パララックス速度を-10に維持 */}
           <Image
-            src="/images/overview.png"
-            alt="副業RPGの背景イメージ"
+            src="/images/fv.png"
+            alt="副業で人生を切り拓くイメージ"
             fill
             priority
-            className="object-cover filter blur-sm scale-105"
+            // className="object-cover scale-105"
+            // object-position を指定 (デフォルトは center だが明示的に)。モバイルでは特に重要。
+            // scale-105 を削除し、不要なクロッピングを減らす。
+            className="object-cover object-center" 
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/40 to-black/60"></div> {/* グラデーションを少し薄く */}
-          {/* <div className="absolute inset-0 hero-bg-shine"></div> */} {/* 激しい光アニメーションは一旦コメントアウト */}
+          {/* グラデーションオーバーレイ (テキストの可読性のため) */}
+          {/* 少し調整: 下部を濃く、上部にも僅かに色を残す */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-black/10"></div>
         </Parallax>
       </ParallaxProvider>
 
       {/* コンテンツ */}
       <motion.div
-        className="relative z-10 text-center max-w-3xl px-4"
-        variants={containerVariants}
+        className="relative z-10 text-center max-w-4xl px-4" // max-w を少し広げる
         initial="hidden"
         animate="visible"
-        // viewport={{ once: true }} // アニメーションを1回のみにする場合は追加
       >
-        {/* タイトル */}
+        {/* メインテキスト */}
         <motion.h1
-          className="font-serif text-5xl md:text-7xl font-bold mb-6 text-shadow-lg"
-          variants={itemVariants}
-          style={{ textShadow: '2px 2px 8px rgba(0,0,0,0.7)' }}
-        >
-          副業<span className="text-[var(--primary)]">RPG</span>
-        </motion.h1>
-
-        {/* サブタイトル */}
-        <motion.p
-          className="font-sans text-xl md:text-2xl text-gray-200 mb-8 text-shadow-md"
-          variants={itemVariants}
-          style={{ textShadow: '1px 1px 4px rgba(0,0,0,0.6)' }}
-        >
-          ゼロから<strong className="font-semibold text-[var(--primary)]">月5万円</strong>を目指す、<strong className="font-semibold text-[var(--primary)]">実践型</strong>副業プログラム
-        </motion.p>
-
-        {/* 説明文 */}
-        <motion.p
-          className="font-sans text-lg md:text-xl mt-2 mb-10 text-gray-300 text-shadow-sm"
-          variants={itemVariants}
-          style={{ textShadow: '1px 1px 3px rgba(0,0,0,0.5)' }}
-        >
-          <strong className="font-semibold">3つの収益化戦略</strong>で、あなたの才能を今すぐ形にしよう。
-        </motion.p>
-
-        {/* CTAボタン */}
-        <motion.a
-          href="#"
-          onClick={(e) => {
-            e.preventDefault();
-            window.open('https://line.me/R/ti/p/@youraccount', '_blank');
+          className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black mb-4 md:mb-6 leading-tight tracking-tight bg-gradient-to-b from-white to-gray-300 bg-clip-text text-transparent"
+          // tracking-tight で文字間隔を少し詰める
+          // bg-gradient-to-b from-white to-gray-300 で白からグレーへのグラデーション
+          // bg-clip-text text-transparent でテキストにグラデーションを適用
+          style={{
+            fontFamily: 'var(--font-noto-serif-jp), serif',
+            textShadow: '2px 2px 10px rgba(0,0,0,0.8)' // シャドウを少し濃くしてコントラストを維持
           }}
-          className="inline-flex items-center justify-center px-10 py-4 bg-gradient-to-r from-[var(--accent)] to-[#ffc107] text-[#331a00] font-bold rounded-full shadow-xl text-xl transform transition-all duration-300 hover:shadow-2xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[var(--accent)]"
-          variants={buttonVariants}
-          initial="hidden" // initialを追加
-          animate="visible" // animateを追加
-          whileHover="hover" // ホバー時のアニメーションを指定
-          whileTap="tap" // タップ時のアニメーションを指定
+          variants={textVariants}
         >
-          <svg className="w-6 h-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-          </svg>
-          LINEで冒険の地図を受け取る
-        </motion.a>
+          副業で、<br className="sm:hidden" />人生を切り拓け
+        </motion.h1>
+        
+        {/* サブテキスト (オプション) */}
+        {/* 
         <motion.p
-          className="mt-5 text-sm text-gray-400"
-          variants={itemVariants} // 他のテキストと同じアニメーションを適用
+          className="font-sans text-lg sm:text-xl md:text-2xl text-gray-200 text-shadow-md"
+          style={{
+            textShadow: '1px 1px 5px rgba(0,0,0,0.6)'
+          }}
+          variants={subtitleVariants}
         >
-          ※ 登録は簡単30秒！無料特典を今すぐGET！
+          ― テンプレートと戦略で、未知なる可能性へ ―
         </motion.p>
+        */}
+
+        {/* CTAボタンなどは一旦削除。必要であれば後で追加 */}
+
       </motion.div>
     </section>
   )
 }
 
-// メインコンポーネント (変更なし)
 export default function Hero() {
   return <HeroContent />;
 } 

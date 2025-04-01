@@ -113,13 +113,6 @@ export default function Items() {
         ))}
       </div>
       
-      <div 
-        className="absolute top-0 left-0 w-full h-[3px] bg-gradient-to-r from-transparent via-[var(--magic)] to-transparent"
-      ></div>
-      <div 
-        className="absolute bottom-0 left-0 w-full h-[3px] bg-gradient-to-r from-transparent via-[var(--accent)] to-transparent"
-      ></div>
-      
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-12">
           <motion.h2

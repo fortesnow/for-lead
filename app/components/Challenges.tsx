@@ -230,9 +230,11 @@ export default function Challenges() {
                       onMouseEnter={() => setIsHovering(true)}
                       onMouseLeave={() => setIsHovering(false)}
                     >
-                      {/* 装飾 */}
+                      {/* 装飾 -> 線を削除 */}
+                      {/*
                       <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[var(--primary)] to-transparent"></div>
                       <div className="absolute bottom-0 right-0 w-full h-1 bg-gradient-to-l from-[var(--primary)] to-transparent"></div>
+                      */}
                       
                       <div className="flex items-center mb-4">
                         <div className="mr-4 p-3 bg-[var(--dark-accent)] rounded-full">
