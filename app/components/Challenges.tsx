@@ -182,9 +182,9 @@ export default function Challenges() {
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-          {/* タブメニュー（モバイルでは上、PCでは左側） */}
-          <div className="lg:col-span-4">
-            <div 
+          {/* タブメニュー（モバイルでは上、PCでは左側） -> モバイルでは下に */}
+          <div className="lg:col-span-4 order-2 lg:order-1">
+            <div
               className="bg-[var(--secondary)] border border-[var(--border)] p-4 rounded-lg magic-aura"
               style={{ backgroundColor: 'rgba(var(--secondary-rgb), 0.5)' }}
             >
@@ -197,8 +197,8 @@ export default function Challenges() {
                       : 'hover:bg-[var(--secondary)]'
                   }`}
                   style={
-                    activeTab === challenge.id 
-                      ? { backgroundColor: 'rgba(var(--primary-rgb), 0.3)' } 
+                    activeTab === challenge.id
+                      ? { backgroundColor: 'rgba(var(--primary-rgb), 0.3)' }
                       : { backgroundColor: 'transparent' }
                   }
                   onClick={() => setActiveTab(challenge.id)}
@@ -213,8 +213,8 @@ export default function Challenges() {
             </div>
           </div>
 
-          {/* コンテンツ表示エリア（モバイルでは下、PCでは右側） */}
-          <div className="lg:col-span-8">
+          {/* コンテンツ表示エリア（モバイルでは下、PCでは右側） -> モバイルでは上に */}
+          <div className="lg:col-span-8 order-1 lg:order-2">
             <AnimatePresence mode="wait">
               {challenges.map(
                 (challenge) =>
