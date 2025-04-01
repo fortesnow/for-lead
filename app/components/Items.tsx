@@ -129,7 +129,7 @@ export default function Items() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            あなたの副業を<span className="text-[var(--accent)]">加速</span>させる！<br className="md:hidden"/>３つの<span className="text-[var(--primary)]">収益化戦略</span>
+            あなたの副業を<span className="text-[var(--accent)]">加速させる！</span><br className="md:hidden"/>２つの<span className="text-[var(--primary)]">大きな武器</span>
           </motion.h2>
           <motion.p
             className="font-sans mt-4 text-lg max-w-2xl mx-auto text-gray-300"
@@ -138,8 +138,8 @@ export default function Items() {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            机上の空論ではありません。私たちが提供するのは、あなたの<strong className="font-semibold">収入をブースト</strong>し、
-            <strong className="font-semibold">理想の働き方</strong>を実現するための具体的な「<strong className="font-semibold">武器</strong>」です。
+            机上の空論ではありません。あなたの<strong className="font-semibold">収入をブースト</strong>し、
+            <strong className="font-semibold">理想の働き方を実現する</strong>ための具体的な<strong className="font-semibold">「武器」</strong>を渡します。
           </motion.p>
         </div>
 
