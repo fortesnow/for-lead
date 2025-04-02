@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 import { useParallax, ParallaxProvider } from 'react-scroll-parallax'
 import { useEffect, useRef, useState } from 'react'
 import gsap from 'gsap'
+import Image from 'next/image'
 
 // 内部コンポーネント - useParallaxを使用
 function WhatIsPersonaContent() {
@@ -170,6 +171,23 @@ function WhatIsPersonaContent() {
           </motion.div>
         </div>
         
+        {/* 画像セクション */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="mt-16 mb-12 flex justify-center"
+        >
+          <Image
+            src="/images/lp-10.png"
+            alt="売れる副業の設計図"
+            width={600}
+            height={400}
+            className="rounded-lg shadow-lg border border-[var(--border)] object-contain"
+          />
+        </motion.div>
+
         {/* 魔法の装飾要素 */}
         <div className="absolute left-10 top-10 w-8 h-8 rounded-full magic-element" 
           style={{ 
@@ -189,11 +207,11 @@ function WhatIsPersonaContent() {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="text-center mt-16 border-t border-[var(--border)] pt-16"
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="text-center border-t border-[var(--border)] pt-12"
         >
           <h3 className="font-serif text-2xl md:text-3xl font-bold mb-6 inline-block text-white">
-            <span className="text-[var(--accent)]">結果の出る副業</span>の設計図を手に入れよう！
+            <span className="text-[var(--accent)]">売れる副業</span>の設計図を手に入れませんか？
           </h3>
           <p className="font-sans text-lg max-w-2xl mx-auto mb-8 text-gray-300">
             LINE登録で<strong className="font-semibold">「あなたに刺さる！コンセプト設計シート」</strong>を<strong className="font-semibold">無料プレゼント</strong>！

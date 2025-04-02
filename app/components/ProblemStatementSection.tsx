@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import Image from 'next/image';
+import { useState, useRef, useEffect } from 'react'
 
 // 各単語をspanで囲むための関数 -> 単語ごとのアニメーションは冗長なため、一旦コメントアウト
 /*
@@ -82,11 +83,89 @@ const ProblemStatementSection = () => {
     visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
   };
 
+  // --- Challenges.tsxから移植するパーティクルアニメーション関連のコード --- START
+  const [particlesEnabled, setParticlesEnabled] = useState(false)
+  const canvasRef = useRef<HTMLCanvasElement>(null)
+  const [particles, setParticles] = useState<Array<{
+    x: number
+    y: number
+    size: number
+    speedX: number
+    speedY: number
+    color: string
+    alpha: number
+  }>>([])
+
+  useEffect(() => {
+    if (typeof window === 'undefined' || !canvasRef.current) return
+    const canvas = canvasRef.current
+    const colors = ['#7e57c2', '#ffd54f', '#42a5f5', '#b39ddb'] // 色はお好みで調整
+    const newParticles = Array(80).fill(0).map(() => ({ // パーティクル数を調整 (例: 80)
+      x: Math.random() * canvas.clientWidth,
+      y: Math.random() * canvas.clientHeight,
+      size: Math.random() * 2.5 + 0.5, // サイズを微調整
+      speedX: (Math.random() - 0.5) * 0.3, // 速度を微調整
+      speedY: (Math.random() - 0.5) * 0.3,
+      color: colors[Math.floor(Math.random() * colors.length)],
+      alpha: Math.random() * 0.4 + 0.1 // 透明度を微調整
+    }))
+    setParticles(newParticles)
+  }, [particlesEnabled])
+
+  useEffect(() => {
+    if (!canvasRef.current || !particlesEnabled || particles.length === 0) return
+    const canvas = canvasRef.current
+    const ctx = canvas.getContext('2d')
+    if (!ctx) return
+    const resizeCanvas = () => {
+      canvas.width = canvas.clientWidth
+      canvas.height = canvas.clientHeight
+    }
+    resizeCanvas()
+    window.addEventListener('resize', resizeCanvas)
+    let animationId: number;
+    const animate = () => {
+      if (!ctx) return
+      ctx.clearRect(0, 0, canvas.width, canvas.height)
+      particles.forEach(particle => {
+        ctx.globalAlpha = particle.alpha
+        ctx.fillStyle = particle.color
+        ctx.beginPath()
+        ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2)
+        ctx.fill()
+        const newX = particle.x + particle.speedX
+        const newY = particle.y + particle.speedY
+        particle.x = newX < 0 ? canvas.width : newX > canvas.width ? 0 : newX
+        particle.y = newY < 0 ? canvas.height : newY > canvas.height ? 0 : newY
+      })
+      animationId = requestAnimationFrame(animate)
+    }
+    animate()
+    return () => {
+      window.removeEventListener('resize', resizeCanvas)
+      cancelAnimationFrame(animationId)
+    }
+  }, [particlesEnabled, particles])
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setParticlesEnabled(true)
+    }, 300) // 少し早めに開始 (例: 300ms)
+    return () => clearTimeout(timer)
+  }, [])
+  // --- パーティクルアニメーション関連のコード --- END
+
   return (
-    <section className="bg-[var(--background)] text-white overflow-hidden relative">
-      {/* アニメーション付き背景パターン -> アニメーションクラスを削除し、静的なパターンに */}
+    <section className="bg-[var(--background)] text-white overflow-hidden relative py-12 md:py-20">
+      {/* アニメーション付き背景パターン -> コメントアウトまたは削除 */}
       {/* <div className="absolute inset-0 animated-bg-pattern z-0"></div> */}
-      <div className="absolute inset-0 bg-radial-pattern opacity-10 z-0"></div> {/* 静的な代替パターン (globals.cssで定義) */}
+      {/* <div className="absolute inset-0 bg-radial-pattern opacity-10 z-0"></div> */}
+
+      {/* パーティクルキャンバスを追加 */}
+      <canvas
+        ref={canvasRef}
+        className="absolute inset-0 w-full h-full pointer-events-none z-0"
+      ></canvas>
 
       {/* コンテンツコンテナ (z-indexで背景の上に) */}
       <div className="container mx-auto px-4 relative z-10">
@@ -95,7 +174,7 @@ const ProblemStatementSection = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.3 }}
-          className="text-center py-12 md:py-20"
+          className="text-center pb-12 md:pb-20"
         >
           <h2 className="font-serif text-3xl md:text-4xl font-bold mb-4 leading-tight magic-text-glow text-white">
             なぜ、あなたの副業は<br className="md:hidden" />「<span className="text-[var(--accent)]">頑張っているのに</span>」<br className="hidden md:block"/> 成果が出ないのか？
