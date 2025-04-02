@@ -91,12 +91,12 @@ function WhatIsPersonaContent() {
   }, [])
 
   return (
-    <section ref={sectionRef} className="relative py-24 bg-[var(--background)] overflow-hidden">
+    <section ref={sectionRef} className="relative py-12 md:py-24 bg-[var(--background)] overflow-hidden">
       {/* 背景パターン */}
       <div 
         ref={parallaxBg.ref} 
         className="absolute inset-0 p5-bg-pattern" 
-        style={{ opacity: 0.2 }}
+        style={{ opacity: 0.1 }}
       ></div>
       
       {/* 装飾用星アイコン - 固定位置で表示 */}
@@ -142,7 +142,7 @@ function WhatIsPersonaContent() {
                   ref={titleRef}
                   className="font-serif text-4xl font-bold mb-6 text-white"
                 >
-                  あなたの<span className="text-[var(--accent)]">「理想のお客様」</span>を見つけ出す
+                  なぜ多くの人が<span className="text-[var(--accent)]">副業でつまずく</span>のか
                 </h2>
                 <div className="title-line w-full h-1 bg-gradient-to-r from-[var(--accent)] to-[var(--primary)] mt-4 transform -skew-x-6 origin-left rounded-full"></div>
               </div>
@@ -159,13 +159,15 @@ function WhatIsPersonaContent() {
             data-animation="fadeIn"
           >
             <div className="p5-card-content">
-              <p className="text-lg max-w-2xl mx-auto mb-12 text-gray-300 font-sans">
-                誰に届けたいのか？その<strong className="font-semibold">「たった一人」</strong>を深く知ることが、選ばれる副業への第一歩。
-                お客様の<strong className="font-semibold">心に響く</strong>サービスや商品を生み出す秘訣がここにあります。
+              <p className="text-lg max-w-2xl mx-auto mb-6 text-gray-300 font-sans">
+                多くの人が副業で挫折する最大の理由—それは<strong className="font-semibold">「誰に届けるか」</strong>が曖昧なまま始めてしまうこと。
               </p>
-              <p className="leading-relaxed">
-                『副業冒険』とは、あなたの中に眠る『才能』が『現実の魔法』となって<br/>
-                姿を現したもので、新たな未来を切り開く『もうひとつの可能性』です。
+              <p className="text-lg max-w-2xl mx-auto mb-6 text-gray-300 font-sans">
+                自分のスキルだけに焦点を当て、<strong className="font-semibold">相手のニーズ</strong>を見落としがち。これは宝の地図を持たずに冒険に出るようなもの。
+              </p>
+              <p className="leading-relaxed mb-4">
+                成功する副業とは、あなたの才能と情熱が<span className="text-[var(--accent)]">お客様の切実な悩み</span>と出会うときに生まれる、<br/>
+                小さくても確かな「価値の交換」なのです。
               </p>
             </div>
           </motion.div>
@@ -177,14 +179,14 @@ function WhatIsPersonaContent() {
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="mt-16 mb-12 flex justify-center"
+          className="mt-8 md:mt-16 mb-8 md:mb-12 flex justify-center relative z-10"
         >
           <Image
             src="/images/lp-10.png"
             alt="売れる副業の設計図"
             width={600}
             height={400}
-            className="rounded-lg shadow-lg border border-[var(--border)] object-contain"
+            className="rounded-lg shadow-lg border border-[var(--border)] object-contain bg-[rgba(0,0,0,0.5)]"
           />
         </motion.div>
 
@@ -208,9 +210,9 @@ function WhatIsPersonaContent() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="text-center border-t border-[var(--border)] pt-12"
+          className="text-center border-t border-[var(--border)] pt-6 md:pt-12 relative z-10"
         >
-          <h3 className="font-serif text-2xl md:text-3xl font-bold mb-6 inline-block text-white">
+          <h3 className="font-serif text-xl md:text-3xl font-bold mb-4 md:mb-6 inline-block text-white">
             <span className="text-[var(--accent)]">売れる副業</span>の設計図を手に入れませんか？
           </h3>
           <p className="font-sans text-lg max-w-2xl mx-auto mb-8 text-gray-300">
