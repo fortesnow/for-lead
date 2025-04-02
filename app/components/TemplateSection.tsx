@@ -16,13 +16,14 @@ export default function TemplateSection() {
       ></div>
       
       <div className="container mx-auto px-4 relative z-10">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           {/* 左側: テキスト */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
+            className="order-2 md:order-1"
           >
             <h2 className="font-serif text-3xl md:text-4xl font-bold mb-6 text-white">
               <span className="text-[var(--accent)]">【LINE登録者限定】</span><br/>
@@ -58,7 +59,7 @@ export default function TemplateSection() {
             whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, type: 'spring', bounce: 0.4 }}
-            className="flex justify-center items-center"
+            className="flex justify-center items-center order-1 md:order-2"
           >
             <Image 
               src="/images/lp-9.png" 
