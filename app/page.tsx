@@ -10,7 +10,6 @@ import { motion } from 'framer-motion'
 
 // 静的インポート
 import Hero from './components/Hero'
-import Items from './components/Items'
 import Challenges from './components/Challenges'
 import FinalCta from './components/FinalCta'
 import ProblemStatementSection from './components/ProblemStatementSection'
@@ -157,7 +156,6 @@ export default function Home() {
       <Suspense fallback={<div className="h-96 bg-black"></div>}>
         <WhatIsPersona />
       </Suspense>
-      <Items />
       <Challenges />
       <FinalCta />
       <FloatingCta />
