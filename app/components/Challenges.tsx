@@ -173,7 +173,7 @@ export default function Challenges() {
           className="text-center mb-12"
         >
           <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold relative inline-block magic-glow text-white">
-            なぜ多くの人が<br className="md:hidden"/><span className="text-[var(--accent)]">副業でつまずく</span>のか？
+            なぜ多くの人が<br className="md:hidden"/><span className="text-[var(--accent)]">副業でつまずく</span>のか
           </h2>
           <p className="font-sans text-base sm:text-lg max-w-2xl mx-auto mt-4 text-gray-300">
             やる気だけでは乗り越えられない、<strong className="font-semibold">副業特有の壁</strong>が存在します。

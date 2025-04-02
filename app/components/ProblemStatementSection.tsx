@@ -3,8 +3,9 @@
 import { motion } from 'framer-motion'
 import Image from 'next/image';
 import { useState, useRef, useEffect } from 'react'
-// ファンタジーアイコンをインポート
-import { GiMagicSwirl, GiSpellBook, GiFireRing, GiMagicGate, GiCrystalBall } from 'react-icons/gi'
+// 不要なアイコンインポートを削除
+// import { GiMagicSwirl, GiSpellBook, GiFireRing, GiMagicGate, GiCrystalBall } from 'react-icons/gi'
+import { FaExclamationTriangle } from 'react-icons/fa' // 警告や問題を示すアイコン
 
 // 各単語をspanで囲むための関数 -> 単語ごとのアニメーションは冗長なため、一旦コメントアウト
 /*
@@ -159,62 +160,6 @@ const ProblemStatementSection = () => {
 
   return (
     <section className="bg-[var(--background)] text-white overflow-hidden relative py-12 md:py-20">
-      {/* ファンタジーアイコンの装飾 */}
-      <div className="absolute w-full h-full pointer-events-none z-10">
-        {/* 左側のアイコン */}
-        <motion.div 
-          className="absolute top-20 left-[5%] text-[var(--accent)] opacity-60"
-          initial={{ opacity: 0, y: -20 }}
-          whileInView={{ opacity: 0.6, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-        >
-          <GiMagicSwirl size={36} />
-        </motion.div>
-        
-        <motion.div 
-          className="absolute top-1/3 left-[8%] text-[var(--primary)] opacity-60"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 0.6, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.3 }}
-        >
-          <GiSpellBook size={28} />
-        </motion.div>
-        
-        {/* 右側のアイコン */}
-        <motion.div 
-          className="absolute top-40 right-[6%] text-[var(--magic)] opacity-60"
-          initial={{ opacity: 0, y: -20, rotate: -10 }}
-          whileInView={{ opacity: 0.6, y: 0, rotate: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-        >
-          <GiFireRing size={32} />
-        </motion.div>
-        
-        <motion.div 
-          className="absolute bottom-32 right-[7%] text-[var(--accent-light)] opacity-60"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 0.6, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-        >
-          <GiMagicGate size={30} />
-        </motion.div>
-        
-        {/* 中央下部のアイコン */}
-        <motion.div 
-          className="absolute bottom-20 left-[48%] text-[var(--accent)] opacity-60"
-          initial={{ opacity: 0, scale: 0.5 }}
-          whileInView={{ opacity: 0.6, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1, delay: 0.5 }}
-        >
-          <GiCrystalBall size={40} />
-        </motion.div>
-      </div>
-
       {/* アニメーション付き背景パターン -> コメントアウトまたは削除 */}
       {/* <div className="absolute inset-0 animated-bg-pattern z-0"></div> */}
       {/* <div className="absolute inset-0 bg-radial-pattern opacity-10 z-0"></div> */}
@@ -234,20 +179,21 @@ const ProblemStatementSection = () => {
           viewport={{ once: true, amount: 0.3 }}
           className="text-center pb-12 md:pb-20"
         >
-          <h2 className="font-serif text-3xl md:text-4xl font-bold mb-4 leading-tight magic-text-glow text-white">
-            なぜ、あなたの副業は<br className="md:hidden" />「<span className="text-[var(--accent)]">頑張っているのに</span>」<br className="hidden md:block"/> 成果が出ないのか？
+          <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold mb-4 leading-tight magic-text-glow text-white">
+            なぜ、あなたの副業は<br className="md:hidden" />「<span className="text-[var(--accent)]">頑張っているのに</span>」<br className="hidden md:block"/> 成果が出ないのか
           </h2>
-          <p className="font-sans text-lg text-gray-300 max-w-3xl mx-auto">
+          <p className="font-sans text-base sm:text-lg text-gray-300 max-w-3xl mx-auto">
+            <FaExclamationTriangle className="inline-block mr-2 text-[var(--accent)]" />
             「もっと稼ぎたい」「自由に働きたい」… その想いは本物なのに、なぜか結果に繋がらない。
             あなたも、こんな「<strong className="font-semibold">目に見えない壁</strong>」にぶつかっていませんか？
           </p>
         </motion.div>
 
-        <div className="space-y-12 md:space-y-20 lg:space-y-28">
+        <div className="space-y-16 md:space-y-20 lg:space-y-28">
           {painPoints.map((point, index) => (
             <motion.div
               key={index}
-              className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12 lg:gap-16 items-center"
+              className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 lg:gap-16 items-center"
               // 各ペアの親要素にアニメーションを設定する代わりに、子要素に直接設定
             >
               <motion.div
@@ -257,32 +203,27 @@ const ProblemStatementSection = () => {
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.4 }}
               >
-                {point.type === 'image' && (
-                  <div className={`relative w-full h-[250px] sm:h-[300px] md:h-[320px] lg:h-[380px] rounded-lg overflow-hidden shadow-lg border border-[var(--border)] bg-black/20`}>
-                    <Image
-                      src={point.imageSrc!}
-                      alt={point.altText!}
-                      fill
-                      sizes="(max-width: 640px) 100vw, (max-width: 768px) 100vw, (max-width: 1024px) 50vw, 40vw"
-                      className="transition-transform duration-500 group-hover:scale-105 object-contain p-2"
-                      style={{ objectFit: 'contain' }}
-                    />
-                  </div>
-                )}
+                <Image
+                  src={point.imageSrc}
+                  alt={point.altText}
+                  width={500}
+                  height={500}
+                  className="rounded-lg shadow-xl transition-all duration-500 ease-in-out group-hover:scale-105 group-hover:shadow-2xl border border-[var(--border)] object-cover"
+                />
               </motion.div>
 
-              {/* テキストエリア */}
               <motion.div
-                className={`${index % 2 === 0 ? 'md:order-2' : 'md:order-1'} px-2 md:px-4`}
+                className={`relative text-left ${index % 2 === 0 ? 'md:order-2' : 'md:order-1'} z-10`}
                 variants={textVariants} // テキスト用アニメーション適用
                 initial="hidden"
                 whileInView="visible"
-                viewport={{ once: true, amount: 0.4 }} // 画像とほぼ同時に発動
+                viewport={{ once: true, amount: 0.4 }}
               >
-                <p className="font-sans text-base sm:text-lg md:text-xl lg:text-2xl font-semibold text-gray-100 leading-relaxed md:leading-loose text-center md:text-left group-hover:text-white transition-colors duration-300">
-                  {/* <WordWrapper text={point.text} /> */}
-                  {point.text} {/* テキストを直接表示 */} 
-                </p>
+                <div className="absolute -inset-3 bg-[var(--secondary)] opacity-80 rounded-lg blur-sm hidden md:block"></div>
+                <div className="relative p-4 md:p-6 lg:p-8 bg-[var(--secondary)] border border-[var(--border)] rounded-lg">
+                  <h3 className="font-serif text-lg sm:text-xl md:text-2xl font-bold mb-3 text-white">{point.altText}</h3>
+                  <p className="font-sans text-sm sm:text-base text-gray-300 leading-relaxed">{point.text}</p>
+                </div>
               </motion.div>
             </motion.div>
           ))}

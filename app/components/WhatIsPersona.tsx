@@ -128,7 +128,7 @@ function WhatIsPersonaContent() {
       ></div>
 
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center mb-0">
           {/* 左側: タイトル（4カラム分） */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
@@ -219,7 +219,7 @@ function WhatIsPersonaContent() {
           className="text-center border-t border-[var(--border)] pt-6 md:pt-12 relative z-10"
         >
           <h3 className="font-serif text-xl md:text-3xl font-bold mb-4 md:mb-6 inline-block text-white">
-            <span className="text-[var(--accent)]">売れる副業</span>の設計図を手に入れませんか？
+            <span className="text-[var(--accent)]">売れる副業</span>の設計図を手に入れよう
           </h3>
           <p className="font-sans text-lg max-w-2xl mx-auto mb-8 text-gray-300">
             LINE登録で<strong className="font-semibold">「あなたに刺さる！コンセプト設計シート」</strong>を<strong className="font-semibold">無料プレゼント</strong>！
