@@ -5,6 +5,8 @@ import { useParallax, ParallaxProvider } from 'react-scroll-parallax'
 import { useEffect, useRef, useState } from 'react'
 import gsap from 'gsap'
 import Image from 'next/image'
+// ファンタジーアイコンをインポート
+import { GiCrystalBall, GiMagicPortal, GiSpellBook, GiFireGem, GiMagicLamp } from 'react-icons/gi'
 
 // 内部コンポーネント - useParallaxを使用
 function WhatIsPersonaContent() {
@@ -92,6 +94,59 @@ function WhatIsPersonaContent() {
 
   return (
     <section ref={sectionRef} className="relative py-12 md:py-24 bg-[var(--background)] overflow-hidden">
+      {/* ファンタジーアイコンの追加装飾 */}
+      <div className="absolute w-full h-full pointer-events-none z-20">
+        <motion.div 
+          className="absolute top-10 left-[15%] text-[var(--magic)] opacity-70"
+          initial={{ opacity: 0, scale: 0.5 }}
+          whileInView={{ opacity: 0.7, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1.2 }}
+        >
+          <GiCrystalBall size={28} />
+        </motion.div>
+        
+        <motion.div 
+          className="absolute top-1/3 right-[12%] text-[var(--accent)] opacity-70"
+          initial={{ opacity: 0, scale: 0.5 }}
+          whileInView={{ opacity: 0.7, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1.2, delay: 0.3 }}
+        >
+          <GiMagicPortal size={32} />
+        </motion.div>
+        
+        <motion.div 
+          className="absolute bottom-1/4 left-[8%] text-[var(--primary)] opacity-70"
+          initial={{ opacity: this && 0, scale: 0.5 }}
+          whileInView={{ opacity: 0.7, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1.2, delay: 0.5 }}
+        >
+          <GiSpellBook size={30} />
+        </motion.div>
+        
+        <motion.div 
+          className="absolute bottom-20 right-[20%] text-[var(--accent-light)] opacity-70"
+          initial={{ opacity: 0, scale: 0.5 }}
+          whileInView={{ opacity: 0.7, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1.2, delay: 0.7 }}
+        >
+          <GiFireGem size={26} />
+        </motion.div>
+        
+        <motion.div 
+          className="absolute top-1/2 left-[40%] text-[var(--magic)] opacity-70"
+          initial={{ opacity: 0, scale: 0.5 }}
+          whileInView={{ opacity: 0.7, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1.2, delay: 0.9 }}
+        >
+          <GiMagicLamp size={34} />
+        </motion.div>
+      </div>
+
       {/* 背景パターン */}
       <div 
         ref={parallaxBg.ref} 

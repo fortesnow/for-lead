@@ -3,6 +3,8 @@
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 // import { Parallax, ParallaxProvider } from 'react-scroll-parallax' // Parallax を削除
+// ファンタジーアイコンをインポート
+import { GiDragonBreath, GiCrystalGrowth, GiFireGem, GiMagicPortal } from 'react-icons/gi'
 
 // アニメーション Variants
 const textVariants = {
@@ -37,6 +39,45 @@ function HeroContent() {
         {/* 背景黒塗りを削除して、オーバーレイのみに */}
         {/* <div className="absolute inset-0 bg-black sm:bg-transparent"></div> */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-black/30"></div> {/* グラデーション調整 */} 
+      </div>
+
+      {/* ファンタジーアイコンの装飾 - 絶対配置 */}
+      <div className="absolute w-full h-full pointer-events-none">
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.5, rotate: -10 }}
+          animate={{ opacity: 0.7, scale: 1, rotate: 0 }}
+          transition={{ duration: 1.5, delay: 0.5 }}
+          className="absolute top-20 left-[5%] text-[var(--accent)] hidden md:block"
+        >
+          <GiDragonBreath size={40} />
+        </motion.div>
+        
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.5 }}
+          animate={{ opacity: 0.7, scale: 1 }}
+          transition={{ duration: 1.2, delay: 0.8 }}
+          className="absolute bottom-40 left-[10%] text-[var(--magic)] hidden md:block"
+        >
+          <GiCrystalGrowth size={30} />
+        </motion.div>
+        
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.5, rotate: 10 }}
+          animate={{ opacity: 0.7, scale: 1, rotate: 0 }}
+          transition={{ duration: 1.8, delay: 1.2 }}
+          className="absolute top-1/4 right-[7%] text-[var(--primary)] hidden md:block"
+        >
+          <GiFireGem size={36} />
+        </motion.div>
+        
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.5 }}
+          animate={{ opacity: 0.7, scale: 1 }}
+          transition={{ duration: 1.5, delay: 1 }}
+          className="absolute bottom-32 right-[12%] text-[var(--accent-light)] hidden md:block"
+        >
+          <GiMagicPortal size={32} />
+        </motion.div>
       </div>
 
       {/* コンテンツ */}

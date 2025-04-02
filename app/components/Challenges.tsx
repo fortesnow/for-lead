@@ -4,7 +4,7 @@ import { useState, useRef, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { FaScroll, FaDragon, FaGem, FaMountain } from 'react-icons/fa'
 import { MdAutoAwesome } from 'react-icons/md'
-import { GiCrystalBall, GiSpellBook, GiFireShrine } from 'react-icons/gi'
+import { GiCrystalBall, GiSpellBook, GiFireShrine, GiSwordWound, GiWizardStaff, GiShield, GiTreasureMap } from 'react-icons/gi'
 
 const challenges = [
   {
@@ -147,6 +147,53 @@ export default function Challenges() {
 
   return (
     <section className="py-24 relative overflow-hidden bg-[var(--background)]">
+      {/* 追加のファンタジーアイコン装飾 */}
+      <div className="absolute w-full h-full pointer-events-none z-10">
+        {/* 左上のアイコン */}
+        <motion.div 
+          className="absolute top-16 left-[7%] text-[var(--accent)] opacity-60"
+          initial={{ opacity: 0, rotate: -10 }}
+          whileInView={{ opacity: 0.6, rotate: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+        >
+          <GiSwordWound size={38} />
+        </motion.div>
+        
+        {/* 左下のアイコン */}
+        <motion.div 
+          className="absolute bottom-32 left-[10%] text-[var(--primary)] opacity-60"
+          initial={{ opacity: 0, rotate: 10 }}
+          whileInView={{ opacity: 0.6, rotate: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.3 }}
+        >
+          <GiShield size={34} />
+        </motion.div>
+        
+        {/* 右上のアイコン */}
+        <motion.div 
+          className="absolute top-24 right-[8%] text-[var(--magic)] opacity-60"
+          initial={{ opacity: 0, scale: 0.5 }}
+          whileInView={{ opacity: 0.6, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+        >
+          <GiWizardStaff size={40} />
+        </motion.div>
+        
+        {/* 右下のアイコン */}
+        <motion.div 
+          className="absolute bottom-40 right-[12%] text-[var(--accent-light)] opacity-60"
+          initial={{ opacity: 0, scale: 0.5 }}
+          whileInView={{ opacity: 0.6, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+        >
+          <GiTreasureMap size={36} />
+        </motion.div>
+      </div>
+      
       {/* 背景魔法陣 */}
       <div 
         className="absolute inset-0" 

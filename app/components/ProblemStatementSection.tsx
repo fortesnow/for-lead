@@ -3,6 +3,8 @@
 import { motion } from 'framer-motion'
 import Image from 'next/image';
 import { useState, useRef, useEffect } from 'react'
+// ファンタジーアイコンをインポート
+import { GiMagicSwirl, GiSpellBook, GiFireRing, GiMagicGate, GiCrystalBall } from 'react-icons/gi'
 
 // 各単語をspanで囲むための関数 -> 単語ごとのアニメーションは冗長なため、一旦コメントアウト
 /*
@@ -157,6 +159,62 @@ const ProblemStatementSection = () => {
 
   return (
     <section className="bg-[var(--background)] text-white overflow-hidden relative py-12 md:py-20">
+      {/* ファンタジーアイコンの装飾 */}
+      <div className="absolute w-full h-full pointer-events-none z-10">
+        {/* 左側のアイコン */}
+        <motion.div 
+          className="absolute top-20 left-[5%] text-[var(--accent)] opacity-60"
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 0.6, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+        >
+          <GiMagicSwirl size={36} />
+        </motion.div>
+        
+        <motion.div 
+          className="absolute top-1/3 left-[8%] text-[var(--primary)] opacity-60"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 0.6, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.3 }}
+        >
+          <GiSpellBook size={28} />
+        </motion.div>
+        
+        {/* 右側のアイコン */}
+        <motion.div 
+          className="absolute top-40 right-[6%] text-[var(--magic)] opacity-60"
+          initial={{ opacity: 0, y: -20, rotate: -10 }}
+          whileInView={{ opacity: 0.6, y: 0, rotate: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+        >
+          <GiFireRing size={32} />
+        </motion.div>
+        
+        <motion.div 
+          className="absolute bottom-32 right-[7%] text-[var(--accent-light)] opacity-60"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 0.6, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+        >
+          <GiMagicGate size={30} />
+        </motion.div>
+        
+        {/* 中央下部のアイコン */}
+        <motion.div 
+          className="absolute bottom-20 left-[48%] text-[var(--accent)] opacity-60"
+          initial={{ opacity: 0, scale: 0.5 }}
+          whileInView={{ opacity: 0.6, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1, delay: 0.5 }}
+        >
+          <GiCrystalBall size={40} />
+        </motion.div>
+      </div>
+
       {/* アニメーション付き背景パターン -> コメントアウトまたは削除 */}
       {/* <div className="absolute inset-0 animated-bg-pattern z-0"></div> */}
       {/* <div className="absolute inset-0 bg-radial-pattern opacity-10 z-0"></div> */}

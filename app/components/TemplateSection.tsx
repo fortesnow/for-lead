@@ -2,10 +2,64 @@
 
 import { motion } from 'framer-motion'
 import Image from 'next/image'
+import { GiSpellBook, GiMagicAxe, GiMagicPalm, GiCrystalShine, GiChest } from 'react-icons/gi'
 
 export default function TemplateSection() {
   return (
     <section className="py-24 bg-[var(--background)] relative overflow-hidden">
+      {/* ファンタジーアイコンの装飾 */}
+      <div className="absolute w-full h-full pointer-events-none z-10">
+        <motion.div 
+          className="absolute top-20 left-[10%] text-[var(--accent)] opacity-60"
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 0.6, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+        >
+          <GiSpellBook size={32} />
+        </motion.div>
+        
+        <motion.div 
+          className="absolute bottom-40 left-[8%] text-[var(--primary)] opacity-60"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 0.6, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+        >
+          <GiMagicAxe size={28} />
+        </motion.div>
+        
+        <motion.div 
+          className="absolute top-1/3 right-[6%] text-[var(--magic)] opacity-60"
+          initial={{ opacity: 0, scale: 0.5 }}
+          whileInView={{ opacity: 0.6, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1, delay: 0.3 }}
+        >
+          <GiMagicPalm size={36} />
+        </motion.div>
+        
+        <motion.div 
+          className="absolute bottom-32 right-[12%] text-[var(--accent-light)] opacity-60"
+          initial={{ opacity: 0, scale: 0.5 }}
+          whileInView={{ opacity: 0.6, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1, delay: 0.4 }}
+        >
+          <GiCrystalShine size={30} />
+        </motion.div>
+        
+        <motion.div 
+          className="absolute bottom-20 left-[40%] text-[var(--accent)] opacity-60"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 0.6, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.5 }}
+        >
+          <GiChest size={34} />
+        </motion.div>
+      </div>
+      
       {/* 背景装飾 */}
       <div 
         className="absolute inset-0 opacity-5 pointer-events-none"

@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
-import { GiSpellBook, GiSwordsPower } from 'react-icons/gi'
+import { GiSpellBook, GiSwordsPower, GiMagicGate, GiDragonHead, GiMagicShield, GiTowerBridge, GiScrollQuill } from 'react-icons/gi'
 import { FaMapMarkedAlt } from 'react-icons/fa'
 import Image from 'next/image'
 
@@ -124,6 +124,62 @@ export default function FinalCta() {
 
   return (
     <section className="py-20 relative overflow-hidden bg-[var(--background)]">
+      {/* 追加のファンタジーアイコン装飾 */}
+      <div className="absolute w-full h-full pointer-events-none z-10">
+        {/* 左側のアイコン */}
+        <motion.div 
+          className="absolute top-24 left-[7%] text-[var(--accent)] opacity-60"
+          initial={{ opacity: 0, scale: 0.5, rotate: -10 }}
+          whileInView={{ opacity: 0.6, scale: 1, rotate: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1, delay: 0.1 }}
+        >
+          <GiDragonHead size={40} />
+        </motion.div>
+        
+        <motion.div 
+          className="absolute top-1/3 left-[12%] text-[var(--primary)] opacity-60"
+          initial={{ opacity: 0, x: -20 }}
+          whileInView={{ opacity: 0.6, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.3 }}
+        >
+          <GiMagicShield size={34} />
+        </motion.div>
+        
+        {/* 右側のアイコン */}
+        <motion.div 
+          className="absolute top-1/4 right-[8%] text-[var(--magic)] opacity-60"
+          initial={{ opacity: 0, scale: 0.5 }}
+          whileInView={{ opacity: 0.6, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+        >
+          <GiMagicGate size={38} />
+        </motion.div>
+        
+        <motion.div 
+          className="absolute bottom-1/3 right-[10%] text-[var(--accent-light)] opacity-60"
+          initial={{ opacity: 0, rotate: 10 }}
+          whileInView={{ opacity: 0.6, rotate: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+        >
+          <GiTowerBridge size={36} />
+        </motion.div>
+        
+        {/* 中央のアイコン */}
+        <motion.div 
+          className="absolute bottom-40 left-[30%] text-[var(--accent)] opacity-60"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 0.6, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.5 }}
+        >
+          <GiScrollQuill size={32} />
+        </motion.div>
+      </div>
+      
       {/* 背景キャンバス（パーティクルアニメーション用） */}
       <canvas
         ref={canvasRef}
