@@ -5,8 +5,9 @@ import { useParallax, ParallaxProvider } from 'react-scroll-parallax'
 import { useEffect, useRef, useState } from 'react'
 import gsap from 'gsap'
 import Image from 'next/image'
-// ファンタジーアイコンをインポート - 必要なアイコンのみをインポート
-import { GiCrystalBall, GiMagicPortal, GiSpellBook, GiFireGem, GiMagicLamp } from 'react-icons/gi'
+// 不要なアイコンインポートを削除
+// import { GiCrystalBall, GiMagicPortal, GiSpellBook, GiFireGem, GiMagicLamp } from 'react-icons/gi'
+import { GiTargetArrows, GiBrain, GiHeartPlus, GiTalk } from 'react-icons/gi' // 文脈に合うアイコンに変更
 
 // 内部コンポーネント - useParallaxを使用
 function WhatIsPersonaContent() {
@@ -94,59 +95,6 @@ function WhatIsPersonaContent() {
 
   return (
     <section ref={sectionRef} className="relative py-12 md:py-24 bg-[var(--background)] overflow-hidden">
-      {/* ファンタジーアイコンの追加装飾 */}
-      <div className="absolute w-full h-full pointer-events-none z-20">
-        <motion.div 
-          className="absolute top-10 left-[15%] text-[var(--magic)] opacity-70"
-          initial={{ opacity: 0, scale: 0.5 }}
-          whileInView={{ opacity: 0.7, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1.2 }}
-        >
-          <GiCrystalBall size={28} />
-        </motion.div>
-        
-        <motion.div 
-          className="absolute top-1/3 right-[12%] text-[var(--accent)] opacity-70"
-          initial={{ opacity: 0, scale: 0.5 }}
-          whileInView={{ opacity: 0.7, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1.2, delay: 0.3 }}
-        >
-          <GiMagicPortal size={32} />
-        </motion.div>
-        
-        <motion.div 
-          className="absolute bottom-1/4 left-[8%] text-[var(--primary)] opacity-70"
-          initial={{ opacity: 0, scale: 0.5 }}
-          whileInView={{ opacity: 0.7, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1.2, delay: 0.5 }}
-        >
-          <GiSpellBook size={30} />
-        </motion.div>
-        
-        <motion.div 
-          className="absolute bottom-20 right-[20%] text-[var(--accent-light)] opacity-70"
-          initial={{ opacity: 0, scale: 0.5 }}
-          whileInView={{ opacity: 0.7, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1.2, delay: 0.7 }}
-        >
-          <GiFireGem size={26} />
-        </motion.div>
-        
-        <motion.div 
-          className="absolute top-1/2 left-[40%] text-[var(--magic)] opacity-70"
-          initial={{ opacity: 0, scale: 0.5 }}
-          whileInView={{ opacity: 0.7, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1.2, delay: 0.9 }}
-        >
-          <GiMagicLamp size={34} />
-        </motion.div>
-      </div>
-
       {/* 背景パターン */}
       <div 
         ref={parallaxBg.ref} 
@@ -197,6 +145,7 @@ function WhatIsPersonaContent() {
                   ref={titleRef}
                   className="font-serif text-4xl font-bold mb-6 text-white"
                 >
+                  <GiTargetArrows className="inline-block mr-2 text-[var(--accent)]" />
                   なぜ多くの人が<span className="text-[var(--accent)]">副業でつまずく</span>のか
                 </h2>
                 <div className="title-line w-full h-1 bg-gradient-to-r from-[var(--accent)] to-[var(--primary)] mt-4 transform -skew-x-6 origin-left rounded-full"></div>
@@ -215,12 +164,14 @@ function WhatIsPersonaContent() {
           >
             <div className="p5-card-content">
               <p className="text-lg max-w-2xl mx-auto mb-6 text-gray-300 font-sans">
+                <GiBrain className="inline-block mr-2 text-[var(--magic)]" />
                 多くの人が副業で挫折する最大の理由—それは<strong className="font-semibold">「誰に届けるか」</strong>が曖昧なまま始めてしまうこと。
               </p>
               <p className="text-lg max-w-2xl mx-auto mb-6 text-gray-300 font-sans">
                 自分のスキルだけに焦点を当て、<strong className="font-semibold">相手のニーズ</strong>を見落としがち。これは宝の地図を持たずに冒険に出るようなもの。
               </p>
               <p className="leading-relaxed mb-4">
+                <GiHeartPlus className="inline-block mr-2 text-[var(--accent)]" />
                 成功する副業とは、あなたの才能と情熱が<span className="text-[var(--accent)]">お客様の切実な悩み</span>と出会うときに生まれる、<br/>
                 小さくても確かな「価値の交換」なのです。
               </p>
@@ -234,7 +185,7 @@ function WhatIsPersonaContent() {
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="mt-8 md:mt-16 mb-8 md:mb-12 flex justify-center relative z-10"
+          className="mt-0 mb-8 md:mb-12 flex justify-center relative z-10"
         >
           <Image
             src="/images/lp-10.png"
@@ -272,6 +223,7 @@ function WhatIsPersonaContent() {
           </h3>
           <p className="font-sans text-lg max-w-2xl mx-auto mb-8 text-gray-300">
             LINE登録で<strong className="font-semibold">「あなたに刺さる！コンセプト設計シート」</strong>を<strong className="font-semibold">無料プレゼント</strong>！
+            <GiTalk className="inline-block mx-1 text-[var(--primary)]" />
             <strong className="font-semibold">個別相談</strong>で、あなたの副業の方向性を明確にします。
           </p>
           <motion.a

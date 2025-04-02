@@ -292,10 +292,6 @@ export default function Challenges() {
           <h3 className="font-serif text-lg sm:text-xl md:text-2xl font-bold mb-6 text-white">
             <span className="text-[var(--accent)]">これらの挑戦</span>、一人で乗り越えられますか？
           </h3>
-          <p className="font-sans text-base sm:text-lg max-w-2xl mx-auto mb-8 text-gray-300">
-            経験豊富な冒険者（私）が<strong className="font-semibold">あなたのガイド</strong>となり、
-            これらの<strong className="font-semibold">壁を突破する具体的な戦略</strong>を授けます。
-          </p>
         </motion.div>
         
         {/* 装飾的な魔法の輝き */}
