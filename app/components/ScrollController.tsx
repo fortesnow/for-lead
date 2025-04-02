@@ -109,8 +109,11 @@ export default function ScrollController() {
         }
       })
       
-      // セクション間のジグザグコネクター追加
+      /* セクション間のジグザグコネクター追加（無効化）
       const addZigzagConnectors = () => {
+        // クライアントの要望によりジグザグが不要なため削除
+        
+        // 元の実装
         const sections = document.querySelectorAll('section')
         sections.forEach((section, index) => {
           if (index < sections.length - 1) {
@@ -141,6 +144,7 @@ export default function ScrollController() {
       
       // コネクター追加の実行
       addZigzagConnectors()
+      */
       
       return () => {
         // スクロールトリガーを全て削除
