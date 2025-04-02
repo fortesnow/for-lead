@@ -5,7 +5,7 @@ import { useParallax, ParallaxProvider } from 'react-scroll-parallax'
 import { useEffect, useRef, useState } from 'react'
 import gsap from 'gsap'
 import Image from 'next/image'
-// ファンタジーアイコンをインポート
+// ファンタジーアイコンをインポート - 必要なアイコンのみをインポート
 import { GiCrystalBall, GiMagicPortal, GiSpellBook, GiFireGem, GiMagicLamp } from 'react-icons/gi'
 
 // 内部コンポーネント - useParallaxを使用
@@ -118,7 +118,7 @@ function WhatIsPersonaContent() {
         
         <motion.div 
           className="absolute bottom-1/4 left-[8%] text-[var(--primary)] opacity-70"
-          initial={{ opacity: this && 0, scale: 0.5 }}
+          initial={{ opacity: 0, scale: 0.5 }}
           whileInView={{ opacity: 0.7, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 1.2, delay: 0.5 }}

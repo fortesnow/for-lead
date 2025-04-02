@@ -1,23 +1,21 @@
 'use client'
 
-import { useEffect, useState } from 'react'
-import { Suspense } from 'react'
-import dynamic from 'next/dynamic'
+import { useEffect, useState, lazy, Suspense } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
 
-// 静的インポート
+// 静的インポート - 軽量なコンポーネントのみ直接インポート
 import Hero from './components/Hero'
-import Challenges from './components/Challenges'
-import FinalCta from './components/FinalCta'
 import ProblemStatementSection from './components/ProblemStatementSection'
 import FloatingCta from './components/FloatingCta'
-import TemplateSection from './components/TemplateSection'
 
-// 動的インポート
-const WhatIsPersona = dynamic(() => import('./components/WhatIsPersona'), { ssr: false })
+// 遅延ロード用のコンポーネント - 重いコンポーネントを遅延ロード
+const Challenges = lazy(() => import('./components/Challenges'))
+const FinalCta = lazy(() => import('./components/FinalCta'))
+const TemplateSection = lazy(() => import('./components/TemplateSection'))
+const WhatIsPersona = lazy(() => import('./components/WhatIsPersona'))
 
 // 安全なGSAP初期化
 const initGSAP = () => {
@@ -119,15 +117,14 @@ export default function Home() {
         }, 500)
       }, 500)
       
-      // グローバルエフェクト: スクロール時のグリッチ
+      // グローバルエフェクト: スクロール時のグリッチ - パフォーマンス調整
       const handleScroll = () => {
-        // Math.randomはクライアントサイドでのみ実行
-        if (Math.random() > 0.99) {
+        if (Math.random() > 0.995) { // 発生頻度を下げる
           setShouldGlitch(true)
         }
       }
       
-      window.addEventListener('scroll', handleScroll)
+      window.addEventListener('scroll', handleScroll, { passive: true }) // パッシブリスナーを追加
       
       return () => {
         window.removeEventListener('scroll', handleScroll)
@@ -152,12 +149,24 @@ export default function Home() {
       <Hero />
       <ProblemStatementSection />
       <FreeSupportSection />
-      <TemplateSection />
-      <Suspense fallback={<div className="h-96 bg-black"></div>}>
+      
+      {/* 重いコンポーネントをSuspenseでラップ */}
+      <Suspense fallback={<div className="h-72 flex items-center justify-center bg-[var(--background)]"><p className="text-white text-xl">Loading...</p></div>}>
+        <TemplateSection />
+      </Suspense>
+      
+      <Suspense fallback={<div className="h-72 flex items-center justify-center bg-[var(--background)]"><p className="text-white text-xl">Loading...</p></div>}>
         <WhatIsPersona />
       </Suspense>
-      <Challenges />
-      <FinalCta />
+      
+      <Suspense fallback={<div className="h-72 flex items-center justify-center bg-[var(--background)]"><p className="text-white text-xl">Loading...</p></div>}>
+        <Challenges />
+      </Suspense>
+      
+      <Suspense fallback={<div className="h-72 flex items-center justify-center bg-[var(--background)]"><p className="text-white text-xl">Loading...</p></div>}>
+        <FinalCta />
+      </Suspense>
+      
       <FloatingCta />
     </main>
   )
