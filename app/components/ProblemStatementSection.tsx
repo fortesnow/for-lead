@@ -83,7 +83,7 @@ const ProblemStatementSection = () => {
   };
 
   return (
-    <section className="bg-gradient-to-b from-[var(--secondary-dark)] to-[var(--background)] text-white overflow-hidden relative">
+    <section className="bg-[var(--background)] text-white overflow-hidden relative">
       {/* アニメーション付き背景パターン -> アニメーションクラスを削除し、静的なパターンに */}
       {/* <div className="absolute inset-0 animated-bg-pattern z-0"></div> */}
       <div className="absolute inset-0 bg-radial-pattern opacity-10 z-0"></div> {/* 静的な代替パターン (globals.cssで定義) */}

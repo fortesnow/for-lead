@@ -5,7 +5,7 @@ import Image from 'next/image'
 
 export default function TemplateSection() {
   return (
-    <section className="py-24 bg-gradient-to-b from-[var(--background)] to-[var(--secondary)] relative overflow-hidden">
+    <section className="py-24 bg-[var(--background)] relative overflow-hidden">
       {/* 背景装飾 */}
       <div 
         className="absolute inset-0 opacity-5 pointer-events-none"

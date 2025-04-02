@@ -111,16 +111,6 @@ function WhatIsPersonaContent() {
         ))}
       </div>
 
-      {/* 装飾ライン */}
-      <div 
-        className="absolute top-0 left-0 h-[10px] w-full bg-gradient-to-r from-[var(--accent)] via-[var(--primary)] to-[var(--magic)] transform -skew-y-3" 
-        style={{ opacity: 0.3 }}
-      ></div>
-      <div 
-        className="absolute bottom-0 left-0 h-[10px] w-full bg-gradient-to-r from-[var(--magic)] via-[var(--primary)] to-[var(--accent)] transform skew-y-3" 
-        style={{ opacity: 0.3 }}
-      ></div>
-      
       {/* 魔法の装飾要素 */}
       <div className="fantasy-stars" style={{ opacity: 0.3 }}></div>
       
@@ -203,10 +193,10 @@ function WhatIsPersonaContent() {
           className="text-center mt-16 border-t border-[var(--border)] pt-16"
         >
           <h3 className="font-serif text-2xl md:text-3xl font-bold mb-6 inline-block text-white">
-            <span className="text-[var(--accent)]">売れる副業</span>の設計図を手に入れませんか？
+            <span className="text-[var(--accent)]">結果の出る副業</span>の設計図を手に入れよう！
           </h3>
           <p className="font-sans text-lg max-w-2xl mx-auto mb-8 text-gray-300">
-            LINE登録で<strong className="font-semibold">「お客様に刺さる！コンセプト設計シート」</strong>を<strong className="font-semibold">無料プレゼント</strong>！
+            LINE登録で<strong className="font-semibold">「あなたに刺さる！コンセプト設計シート」</strong>を<strong className="font-semibold">無料プレゼント</strong>！
             <strong className="font-semibold">個別相談</strong>で、あなたの副業の方向性を明確にします。
           </p>
           <motion.a

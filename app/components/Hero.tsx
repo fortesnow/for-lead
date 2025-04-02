@@ -28,14 +28,15 @@ function HeroContent() {
           alt="副業で人生を切り拓くイメージ"
           fill
           priority
-          // className="object-cover object-center"
-          // モバイルで全体を見せるために object-contain を試す (sm以上でcover)
-          className="object-contain object-center sm:object-cover" 
+          // className="object-contain object-center sm:object-cover" 
+          // object-contain で画像が表示されなくなっているためobject-coverに戻す
+          className="object-cover object-[center_top]" // 上部を優先的に表示
+          sizes="100vw" // 全画面幅で表示
         />
         {/* グラデーションオーバーレイ */}
-        {/* containの場合、画像が表示されないエリアが出るため、背景色も設定 */}
-        <div className="absolute inset-0 bg-black sm:bg-transparent"></div> {/* モバイルでの背景黒塗り */} 
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-black/20"></div> {/* グラデーション調整 */} 
+        {/* 背景黒塗りを削除して、オーバーレイのみに */}
+        {/* <div className="absolute inset-0 bg-black sm:bg-transparent"></div> */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-black/30"></div> {/* グラデーション調整 */} 
       </div>
 
       {/* コンテンツ */}

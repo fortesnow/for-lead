@@ -32,7 +32,7 @@ const initGSAP = () => {
 // 個別無料サポートセクションコンポーネント
 const FreeSupportSection = () => {
   return (
-    <section id="free-support" className="py-24 bg-gradient-to-b from-[var(--background)] to-[var(--secondary-dark)] text-white relative overflow-hidden">
+    <section id="free-support" className="py-24 bg-[var(--background)] text-white relative overflow-hidden">
       <div 
         className="absolute inset-0 pointer-events-none" 
         style={{ 
@@ -73,18 +73,18 @@ const FreeSupportSection = () => {
             <p className="font-sans text-lg text-gray-300 mb-8 leading-relaxed">
               副業の道は孤独です。「これで合ってる？」「もっと良い方法は？」…そんな<strong className="font-semibold text-[var(--accent-light)]">尽きない疑問や不安</strong>に、<strong className="font-semibold text-[var(--accent-light)]">経験豊富なプロ</strong>が<strong className="font-semibold text-[var(--accent-light)]">マンツーマン</strong>で向き合い、<strong className="font-semibold text-[var(--accent-light)]">具体的な解決策</strong>と<strong className="font-semibold text-[var(--accent-light)]">成功への道筋</strong>を示します。
             </p>
-            <ul className="font-sans space-y-3 mb-10 text-gray-300">
-              <li className="flex items-center">
-                <svg className="w-5 h-5 text-[var(--accent)] mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"></path></svg>
-                あなただけの<strong className="font-semibold text-white mx-1">収益化プラン</strong>を一緒に設計
+            <ul className="font-sans space-y-4 mb-10 text-gray-300">
+              <li className="flex flex-wrap items-start">
+                <svg className="w-5 h-5 text-[var(--accent)] mr-2 flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"></path></svg>
+                <span className="flex-1">あなただけの<strong className="font-semibold text-white mx-1">収益化プラン</strong>を一緒に設計</span>
               </li>
-              <li className="flex items-center">
-                <svg className="w-5 h-5 text-[var(--accent)] mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"></path></svg>
-                <strong className="font-semibold text-white mx-1">よくある失敗パターン</strong>を回避するノウハウを提供
+              <li className="flex flex-wrap items-start">
+                <svg className="w-5 h-5 text-[var(--accent)] mr-2 flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"></path></svg>
+                <span className="flex-1"><strong className="font-semibold text-white mx-1">よくある失敗パターン</strong>を回避するノウハウを提供</span>
               </li>
-              <li className="flex items-center">
-                <svg className="w-5 h-5 text-[var(--accent)] mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"></path></svg>
-                <strong className="font-semibold text-white mx-1">モチベーションを維持</strong>し、<strong className="font-semibold text-white mx-1">継続</strong>するための秘訣を伝授
+              <li className="flex flex-wrap items-start">
+                <svg className="w-5 h-5 text-[var(--accent)] mr-2 flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"></path></svg>
+                <span className="flex-1"><strong className="font-semibold text-white mx-1">モチベーションを維持</strong>し、<strong className="font-semibold text-white mx-1">継続</strong>するための秘訣を伝授</span>
               </li>
             </ul>
             <motion.button
